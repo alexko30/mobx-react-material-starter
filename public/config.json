@@ -1,0 +1,7 @@
+{
+  "apiURL": {
+    "origin": "https://api.app.com",
+    "prefix": "/v1"
+  },
+  "version": "1.0.0"
+}

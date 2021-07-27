@@ -1,0 +1,11 @@
+export { PaletteOptions } from '@material-ui/core/styles/createPalette';
+export { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
+export { Overrides } from '@material-ui/core/styles/overrides';
+export { ComponentsProps } from '@material-ui/core/styles/props';
+export { TypographyOptions } from '@material-ui/core/styles/createTypography';
+export { ZIndexOptions } from '@material-ui/core/styles/zIndex';
+export { SpacingOptions } from '@material-ui/core/styles/createSpacing';
+export { ShapeOptions } from '@material-ui/core/styles/shape';
+export { Shadows } from '@material-ui/core/styles/shadows';
+export { MixinsOptions } from '@material-ui/core/styles/createMixins';
+export { Theme, Direction, ThemeOptions } from '@material-ui/core/styles';

@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedParameters": true,
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      "@shared/*": ["src/shared/*"],
+      "@modules/*": ["src/modules/*"],
+      "@core/*": ["src/core/*"]
+    },
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["es6", "dom"],
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "skipLibCheck": true
+  },
+  "compileOnSave": true,
+  "include": [
+    "src/**/*"
+  ]
+}
