@@ -8,9 +8,9 @@ export interface SystemUserDTO {
 }
 
 export class SystemUser extends BaseModel<SystemUserDTO> {
-  email: string = '';
-  id: string = '';
-  role: SystemUserRole = SystemUserRole.businessOwner;
+  email: string;
+  id: string;
+  role: SystemUserRole;
 
   constructor(dto: SystemUserDTO) {
     super(dto);

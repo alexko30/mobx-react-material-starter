@@ -16,7 +16,7 @@ module.exports = {
     chunkFilename: 'assets/[name].[hash].js',
   },
   mode: 'production',
-  // Chunks
+  // TODO Chunks
   devtool: 'source-map',
   plugins: [
     ...defaultConfig.plugins,

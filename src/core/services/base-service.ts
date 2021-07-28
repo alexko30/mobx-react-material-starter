@@ -1,10 +1,7 @@
-import { injectable } from '@core/ioc/utils';
-import { BaseIocEntity } from '@core/ioc/base-entity';
+import { injectable } from '@core/di';
 
 @injectable()
-export class BaseService extends BaseIocEntity {
-  static diToken = Symbol('base-service');
-
+export class BaseService {
   protected urlPrefix = '';
 
   getUrl(path?: string | number) {

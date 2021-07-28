@@ -8,9 +8,9 @@ export interface EntityNameReadDTO {
 }
 
 export class EntityNameReadModel extends BaseModel<EntityNameReadDTO> {
-  private id: string = '';
-  private name: string = '';
-  private type: EntityType = EntityType.red;
+  private id: string;
+  private name: string;
+  private type: EntityType;
 
   constructor(dto: EntityNameReadDTO) {
     super(dto);

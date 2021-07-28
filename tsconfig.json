@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
     "strictPropertyInitialization": false,
-
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
     "noUncheckedIndexedAccess": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "types": ["node"],
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",

@@ -1,3 +1,4 @@
+export { TransitionsOptions } from '@material-ui/core/styles/transitions';
 export { PaletteOptions } from '@material-ui/core/styles/createPalette';
 export { BreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
 export { Overrides } from '@material-ui/core/styles/overrides';

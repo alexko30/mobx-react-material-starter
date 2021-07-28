@@ -1,5 +1,5 @@
 import qs, { IParseOptions } from 'qs';
-import { PartialPath } from 'history';
+import { LocationDescriptorObject } from 'history';
 import omitBy from 'lodash/omitBy';
 
 import { Queries } from '@shared/types/common';
@@ -15,7 +15,7 @@ export const parseQueries = (queries: string): Queries => qs.parse(queries, { ig
 export const getQueriesAsSearch = (queries?: Queries): string =>
   qs.stringify({ ...(queries || getQueries()) }, { addQueryPrefix: true, encode: true });
 
-export const setQueries = (queries: Queries, replace?: boolean, locationArgs?: Partial<PartialPath>) => {
+export const setQueries = (queries: Queries, replace?: boolean, locationArgs?: Partial<LocationDescriptorObject>) => {
   const args = {
     search: qs.stringify(omitBy(queries, (value) => !value), { addQueryPrefix: true }),
     ...locationArgs
@@ -28,7 +28,7 @@ export const setQueries = (queries: Queries, replace?: boolean, locationArgs?: P
   return history.push(args);
 };
 
-export const deleteQueries = (queriesToDelete?: Array<string>, replace?: boolean, locationArgs?: Partial<PartialPath>) => {
+export const deleteQueries = (queriesToDelete?: Array<string>, replace?: boolean, locationArgs?: Partial<LocationDescriptorObject>) => {
   if (!queriesToDelete) {
     return setQueries({}, replace, locationArgs);
   }

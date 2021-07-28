@@ -10,28 +10,26 @@ export interface LazyLoadProps extends WithStyles<typeof styles> {
   component?: React.ComponentType<any>;
 }
 
-class LazyLoadComponent extends React.Component<LazyLoadProps> {
-  static defaultProps = {
-    withFallback: true,
-  };
+const LazyLoadComponent: React.FC<LazyLoadProps> = (props) => {
+  const { component: Component, classes, children, withFallback, ...otherProps } = props;
+  
+  return (
+    <React.Suspense 
+      fallback={withFallback
+        ? <Loading classes={{ root: classes.root }} size={40} />
+        : null
+      }
+    >
+      {Component 
+        ? <Component {...otherProps} />
+        : children
+      }
+    </React.Suspense>
+  );
+};
 
-  render() {
-    const { component: Component, classes, children, withFallback, ...otherProps } = this.props;
-
-    return (
-      <React.Suspense 
-        fallback={withFallback
-          ? <Loading classes={{ root: classes.root }} size={40} />
-          : null
-        }
-      >
-        {Component 
-          ? <Component {...otherProps} />
-          : children
-        }
-      </React.Suspense>
-    );
-  }
-}
+LazyLoadComponent.defaultProps = {
+  withFallback: true,
+};
 
 export const LazyLoad = withStyles(styles)(LazyLoadComponent);

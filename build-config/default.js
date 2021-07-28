@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const TSconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const appDir = path.resolve(__dirname, '../');
 
@@ -23,7 +24,7 @@ module.exports = {
         exclude: /(node_modules|service-worker)/,
         options: {
           reportFiles: ['src/**/*.{ts,tsx}'],
-          useCaseSensitiveFileNames: true
+          useCaseSensitiveFileNames: true,
         }
       },
       {
@@ -38,9 +39,14 @@ module.exports = {
         test: /\.(png|jp(e*)g|jp2|webp|jxr|svg)$/,
         use: 'file-loader',
       },
+      {
+        test: /\.(s[ac]ss|css)$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new CaseSensitivePathsPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new webpack.ContextReplacementPlugin(/validatorjs\/src[\/\\]lang$/, /en/),

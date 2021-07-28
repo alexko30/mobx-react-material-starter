@@ -1,4 +1,4 @@
-import Form, { Field } from 'mobx-react-form';
+import { Field, Form } from 'mobx-react-form';
 
 export const getDefaultError = (error: { [key: string]: Array<any> } | string) => {
   const defaultMessage = 'Something went wrong';
@@ -50,8 +50,13 @@ export const showErrors = (errorSource: Array<AppError> | string, form: Form) =>
   retrieveValidationErrors(errorSource).forEach((err) => {
     const fieldParts = err.field.split('.');
 
-    const getField = (fields: Map<string, Field>, fieldName: string) => {
+    const getField = (fields: Map<string, Field>, fieldName: string): Field | undefined => {
       const selectedField = fields.get(fieldName);
+
+      if (!selectedField) {
+        return undefined;
+      }
+
       const currentFieldNameIndex = fieldParts.findIndex((x) => x === fieldName);
       const nextFieldName = fieldParts[currentFieldNameIndex + 1];
   

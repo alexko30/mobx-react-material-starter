@@ -17,7 +17,7 @@ export const getFileExtensionLabels = (extensions: Array<string>) => {
 };
 
 export const getFileExtensionLabel  = (extension: string): string => {
-  const labels = {
+  const labels: { [mimeType: string]: string } = {
     'image/png': 'png',
     'image/jpeg': 'jpeg',
     'audio/mp4': 'mp4',

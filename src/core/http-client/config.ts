@@ -11,7 +11,7 @@ export class Http {
   private getTokenRefreshStatus: HttpConfig['getTokenRefreshStatus'];
 
   constructor(config: HttpConfig) {
-    this._client = this.createHTTPClient();
+    this._client = this.createHttpClient();
 
     this.setClientConfig(config.defaults);
 
@@ -24,7 +24,7 @@ export class Http {
     return this._client;
   }
 
-  createHTTPClient = () => {
+  createHttpClient = () => {
     return Axios.create();
   }
 

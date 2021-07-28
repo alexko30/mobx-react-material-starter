@@ -9,6 +9,7 @@ module 'mobx-react-form' {
     showErrors: () => void;
     update: (data: { [key: string]: any }) => any;
     reset: () => any;
+    del: (fieldName: string) => any;
     validator;
     fields: Map<string, Field>;
   }
@@ -82,7 +83,7 @@ module 'mobx-react-form' {
     autoFocus: boolean;
     error: string;
     errorAsync?: string;
-    fields: Array<Field>;
+    fields: Map<string, Field>;
     hasError: boolean;
     id: string;
     name: string;

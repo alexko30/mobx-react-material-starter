@@ -1,6 +1,5 @@
-import { injectable } from '@core/ioc/utils';
+import { injectable } from '@core/di';
 import { IHttpClient } from './http-client/types';
-import { BaseIocEntity } from './ioc/base-entity';
 
 export interface ConfigType {
   apiURL: {
@@ -11,9 +10,7 @@ export interface ConfigType {
 }
 
 @injectable()
-export class Config extends BaseIocEntity {
-  static diToken = Symbol('config');
-
+export class Config {
   private config: ConfigType;
   private httpClient: IHttpClient;
 
@@ -25,6 +22,12 @@ export class Config extends BaseIocEntity {
 
   get() {
     return this.config;
+  }
+
+  get baseUrl() {
+    const { apiURL } = this.config;
+
+    return `${apiURL.origin}${apiURL.prefix}`;
   }
 
   private async setConfig() {

@@ -1,11 +1,9 @@
 import validatorjs, { ValidatorStatic } from 'validatorjs';
 import { Form } from 'mobx-react-form';
 
-export interface Validations {
-  [key: string]: {
-    function: (value: any, attribute?: string) => boolean;
-    message: string;
-  };
+export interface Validation {
+  function: (value: any, attribute?: string) => boolean;
+  message: string;
 }
 
 export const validationRegExpr = {
@@ -18,7 +16,13 @@ export const validationRegExpr = {
   whiteSpace: /^(?![\s]).*[\S]+$/
 };
 
-const baseValidations: Validations = {
+function createValidations<ClassKey extends string>(
+  x: Record<ClassKey, Validation>
+) {
+  return x;
+}
+
+export const baseValidations = createValidations({
   passwordStrength: {
     function(value) {
       const formatValidators = [
@@ -43,9 +47,13 @@ const baseValidations: Validations = {
   },
   samePass: {
     function(value, attribute) {
-      const newValue = (this as Form).validator.input[attribute];
+      if (attribute) {
+        const newValue = (this as unknown as Form).validator.input[attribute];
+  
+        return newValue === value;
+      }
 
-      return newValue === value;
+      return false;
     },
     message: 'Passwords do not match.',
   },
@@ -74,10 +82,10 @@ const baseValidations: Validations = {
     message: 'This field should be integer.'
   },
 
-};
+});
 
-export function getDefaultValidations(customValidations?: Validations) {
-  const rules = {
+export function getDefaultValidations(customValidations?: { [key: string]: Validation }) {
+  const rules: { [key: string]: Validation } = {
     ...baseValidations,
     ...customValidations,
   };
@@ -86,9 +94,13 @@ export function getDefaultValidations(customValidations?: Validations) {
     dvr: {
       package: validatorjs,
       extend: (validator: ValidatorStatic) => {
-        Object.keys(rules).forEach((key) =>
-          validator.register(key, rules[key].function, rules[key].message)
-        );
+        Object.keys(rules).forEach((key) => {
+          const config = rules[key];
+
+          if (config) {
+            validator.register(key, config.function, config.message)
+          }
+        });
 
         const messages = validatorjs.getMessages('en');
 

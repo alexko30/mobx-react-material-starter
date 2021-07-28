@@ -1,10 +1,9 @@
-import { BaseIocEntity } from '@core/ioc/base-entity';
+import { injectable } from '@core/di';
 import { Http } from './config';
 import { HttpConfig, HttpRequestConfig, HttpSuccessResponse, IHttpClient } from './types';
 
-export class HTTPClient extends BaseIocEntity implements IHttpClient {
-	static diToken = Symbol('HTTPClient');
-
+@injectable()
+export class HttpClient implements IHttpClient {
 	private http: Http;
 
 	initialize = (config: HttpConfig) => {
@@ -12,7 +11,7 @@ export class HTTPClient extends BaseIocEntity implements IHttpClient {
 	}
 
 	createInstance() {
-		return this.http.createHTTPClient();
+		return this.http.createHttpClient();
 	}
 
 	get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>> {

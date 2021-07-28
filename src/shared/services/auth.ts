@@ -1,15 +1,45 @@
-import { injectable } from '@core/ioc/utils';
+import { makeObservable } from 'mobx';
+
+import { inject, injectable } from '@core/di';
 import { BaseService } from '@core/services/base-service';
-import { iocContainer } from '@core/ioc';
-import { HTTPClient } from '@core/http-client';
+import { DI_TOKENS } from '@shared/constants/di';
+import { SystemUser } from '@shared/models/system-user';
+import { TokenRefreshStatus } from '@shared/constants/auth';
+import { IHttpClient } from '@core/http-client/types';
 
 @injectable()
 export class AuthService extends BaseService {
-  static diToken = Symbol('auth-service');
-
   protected urlPrefix = '/auth';
 
-  private http = iocContainer.get<HTTPClient>(HTTPClient.diToken);
+  private http = inject<IHttpClient>(DI_TOKENS.httpClient);
+
+  private _user: SystemUser;
+  private _tokenRefreshStatus: TokenRefreshStatus;
+
+  constructor() {
+    super();
+
+    makeObservable(this, {
+      
+    });
+  }
+
+  get loggedIn() {
+    return Boolean(this._user);
+  }
+
+  get tokenRefreshStatus() {
+    return this._tokenRefreshStatus;
+  }
+
+  get tokens() {
+    return {
+      access: '',
+      refresh: '',
+    };
+  }
+
+  async refreshToken() {}
 
   activateAccount(data: { email: string; temporaryPassword: string; permanentPassword: string }) {
     const { email, temporaryPassword, permanentPassword } = data;

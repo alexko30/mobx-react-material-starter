@@ -5,7 +5,7 @@ export interface EntityNameCreateDTO {
 }
 
 export class EntityNameCreateModel extends BaseModel<EntityNameCreateDTO> {
-  private name: string = '';
+  private name: string;
 
   constructor(dto: EntityNameCreateDTO) {
     super(dto);

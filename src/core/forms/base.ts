@@ -1,4 +1,4 @@
-import { Form } from 'mobx-react-form';
+import { Form, FormSetup } from 'mobx-react-form';
 import { getDefaultValidations } from './validations';
 
 export interface Hooks {

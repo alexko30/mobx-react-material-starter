@@ -1,4 +1,4 @@
-import { Field } from 'mobx-react-form';
+import { Field, Form } from 'mobx-react-form';
 
 export const scrollToInvalidField = (fieldName: string, container = document) => {
   const input = container.querySelector(`[data-scroll-id="${fieldName}"]`);
@@ -6,8 +6,8 @@ export const scrollToInvalidField = (fieldName: string, container = document) =>
   input?.scrollIntoView();
 };
 
-export const getInvalidFields = (form): Array<string> => {
-  const retrieveFields = (fields) => {
+export const getInvalidFields = (form: Form): Array<string> => {
+  const retrieveFields = (fields: Form['fields']): Array<string> => {
     return Array.from(fields.values())
       .filter(({ hasError }) => hasError)
       .reduce<Array<string>>((acc, { name, fields: nestedFields }) => 
@@ -21,7 +21,7 @@ export const getInvalidFields = (form): Array<string> => {
   return retrieveFields(form.fields);
 };
 
-export const deleteFields = (form, fields: Array<string>) => {
+export const deleteFields = (form: Form, fields: Array<string>) => {
   fields.forEach((field) => form.del(field));
 };
 

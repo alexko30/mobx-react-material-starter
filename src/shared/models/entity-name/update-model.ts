@@ -7,8 +7,8 @@ export interface EntityNameUpdateDTO {
 }
 
 export class EntityNameUpdateModel extends BaseModel<EntityNameUpdateDTO> {
-  private name: string = '';
-  private type: EntityType = EntityType.red;
+  private name: string;
+  private type: EntityType;
 
   constructor(dto: EntityNameUpdateDTO) {
     super(dto);

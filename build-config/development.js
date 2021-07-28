@@ -25,7 +25,7 @@ module.exports = {
     publicPath: '/',
     filename: '[name].js',
   },
-  devtool: 'cheap-source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       ...defaultConfig.module.rules,
