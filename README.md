@@ -1,5 +1,3 @@
-# Mi Rialiti
-
 ### Development
 
 ```
