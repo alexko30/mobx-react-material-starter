@@ -20,7 +20,7 @@
     "html-webpack-plugin": "5.3.2",
     "husky": "7.0.1",
     "mini-css-extract-plugin": "2.1.0",
-    "pushstate-server": "3.1.0",
+    "pushstate-server": "3.0.1",
     "react-hot-loader": "4.13.0",
     "ts-enum-util": "4.0.2",
     "ts-loader": "9.2.4",
@@ -36,7 +36,7 @@
     "start": "webpack serve --config ./build-config/development.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build-config/production.js",
     "format": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
-    "preview": "pushstate-server ./dist 3003"
+    "preview": "pushstate-server ./dist 4200"
   },
   "keywords": [],
   "dependencies": {

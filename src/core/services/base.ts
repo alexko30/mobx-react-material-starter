@@ -1,4 +1,4 @@
-import { injectable } from '@core/di';
+import { injectable } from '@core/di/utils';
 
 @injectable()
 export class BaseService {

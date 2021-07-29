@@ -1,4 +1,5 @@
-import { injectable } from '@core/di';
+import { inject, injectable } from '@core/di/utils';
+import { DI_TOKENS } from '@shared/constants/di';
 import { IHttpClient } from './http-client/types';
 
 export interface ConfigType {
@@ -12,11 +13,9 @@ export interface ConfigType {
 @injectable()
 export class Config {
   private config: ConfigType;
-  private httpClient: IHttpClient;
+  private httpClient: IHttpClient = inject(DI_TOKENS.configHttpClient);
 
-  initialize({ httpClient }: { httpClient: IHttpClient }) {
-    this.httpClient = httpClient;
-
+  initialize() {
     return this.setConfig();
   }
 
@@ -31,11 +30,13 @@ export class Config {
   }
 
   private async setConfig() {
-    const httpInstance = this.httpClient.createInstance();
+    this.httpClient.setConfig({
+      defaults: {
+        baseURL: window.location.origin
+      }
+    });
 
-    httpInstance.defaults.baseURL = window.location.origin;
-
-    const { data } = await httpInstance.get('./public/config.json');
+    const { data } = await this.httpClient.get<ConfigType>('./public/config.json');
 
     this.config = data;
   }

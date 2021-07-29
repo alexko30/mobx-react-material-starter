@@ -12,11 +12,17 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
     publicPath: '/',
-    filename: 'assets/[name].[hash].js',
-    chunkFilename: 'assets/[name].[hash].js',
+    filename: 'assets/[name].[fullhash].js',
+    chunkFilename: 'assets/[name].[fullhash].js',
   },
   mode: 'production',
-  // TODO Chunks
+  optimization: {
+    removeAvailableModules: true,
+    splitChunks: {
+      minSize: 0,
+      chunks: 'all',
+    },
+  },
   devtool: 'source-map',
   plugins: [
     ...defaultConfig.plugins,

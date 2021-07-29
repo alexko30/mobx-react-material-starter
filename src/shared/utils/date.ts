@@ -7,10 +7,6 @@ export const isAfter = (compareToDate: string, comparableDate: string, compareTy
 };
 
 export const formatDate = (date: string | Date, format: string = 'll', utc: boolean = false) => {
-  if (!date) {
-    return '';
-  }
-
   if (utc) {
     return moment.utc(date).format(format);
   }

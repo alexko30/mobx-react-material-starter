@@ -8,7 +8,9 @@ function createTokens<Key extends string>(
 
 export const DI_TOKENS = createTokens({
   config: Symbol('config'),
-  httpClient: Symbol('http-client'),
-  baseService: Symbol('base-service'),
+  appHttpClient: Symbol('app-http-client'),
+  configHttpClient: Symbol('config-http-client'),
+  baseService: Symbol('base'),
   authService: Symbol('auth-service'),
+  storageService: Symbol('auth-service'),
 });

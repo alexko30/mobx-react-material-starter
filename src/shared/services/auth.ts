@@ -1,7 +1,7 @@
 import { makeObservable } from 'mobx';
 
-import { inject, injectable } from '@core/di';
-import { BaseService } from '@core/services/base-service';
+import { inject, injectable } from '@core/di/utils';
+import { BaseService } from '@core/services/base';
 import { DI_TOKENS } from '@shared/constants/di';
 import { SystemUser } from '@shared/models/system-user';
 import { TokenRefreshStatus } from '@shared/constants/auth';
@@ -11,7 +11,7 @@ import { IHttpClient } from '@core/http-client/types';
 export class AuthService extends BaseService {
   protected urlPrefix = '/auth';
 
-  private http = inject<IHttpClient>(DI_TOKENS.httpClient);
+  private http = inject<IHttpClient>(DI_TOKENS.appHttpClient);
 
   private _user: SystemUser;
   private _tokenRefreshStatus: TokenRefreshStatus;

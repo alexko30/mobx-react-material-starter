@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
-import Typography from '@material-ui/core/Typography';
 import { withRouter, RouteComponentProps, Route } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 
-import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
+import { Typography } from '@shared/components/typography';
 import { ErrorHandler } from '@shared/components/error-handler';
+import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
 import { CSS_VARIABLES, getScreenHeight } from '@shared/utils/layout';
 import { browser } from '@shared/utils/browser';
 
-import styles from './App.styles';
+import { styles } from './app.styles';
 
 export interface AppProps extends WithStyles<typeof styles>, RouteComponentProps { }
 

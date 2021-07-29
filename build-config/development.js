@@ -13,7 +13,7 @@ module.exports = {
   devServer: {
     hot: true,
     contentBase: defaultConfig.context,
-    port: 3000,
+    port: 4200,
     host: '0.0.0.0',
     publicPath: '/',
     historyApiFallback: true,
