@@ -5,10 +5,6 @@ const defaultConfig = require('./default');
 
 module.exports = {
   ...defaultConfig,
-  entry: {
-    polyfill: './src/polyfill',
-    main: './src/index.tsx',
-  },
   mode: 'development',
   devServer: {
     hot: true,

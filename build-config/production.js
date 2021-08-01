@@ -5,10 +5,6 @@ const defaultConfig = require('./default');
 
 module.exports = {
   ...defaultConfig,
-  entry: {
-    polyfill: './src/polyfill',
-    app: './src/index.tsx',
-  },
   output: {
     path: path.join(__dirname, '../dist'),
     publicPath: '/',

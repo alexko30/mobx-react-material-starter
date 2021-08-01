@@ -10,6 +10,8 @@ const appDir = path.resolve(__dirname, '../');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
+  target: ['web', 'es5'],
+  entry: './src/index.tsx',
   context: appDir,
   resolve: {
     modules: [path.resolve(appDir, 'node_modules')],
