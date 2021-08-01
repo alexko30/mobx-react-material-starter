@@ -1,4 +1,3 @@
-import * as React from 'react';
 import CoreSvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 export type { SvgIconProps };

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Message } from '@shared/components/message';
 import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
 

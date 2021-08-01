@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { withRouter, RouteComponentProps, Route } from 'react-router-dom';
 import debounce from 'lodash/debounce';

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Grid, GridProps } from '@shared/components/grid';
 
 export interface FlexProps extends GridProps {

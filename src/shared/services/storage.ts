@@ -1,23 +1,24 @@
-import { set as _setCookie, get as _getCookie, remove as _removeCookie, CookieAttributes } from 'js-cookie';
+import { set as _setCookie, get as _getCookie, remove as _removeCookie } from 'js-cookie';
 
 import { injectable } from '@core/di/utils';
 import { BaseService } from '@core/services/base';
+import { IStorageService } from '@shared/types/storage';
 
 @injectable()
-export class StorageService extends BaseService {
-  getCookie(key: string) {
-    return _getCookie(key);
+export class StorageService extends BaseService implements IStorageService {
+  getCookie: IStorageService['getCookie'] = (key) => {
+    return _getCookie(this.getStorageKey(key));
   }
   
-  setCookie(key: string, value: any, options?: CookieAttributes) {
-    _setCookie(key, value, { sameSite: 'Lax', ...options });
+  setCookie: IStorageService['setCookie'] = (key, value, options) => {
+    _setCookie(this.getStorageKey(key), value, { sameSite: 'Lax', ...options });
   }
   
-  removeCookie(key: string) {
-    _removeCookie(key);
+  removeCookie: IStorageService['removeCookie'] = (key) => {
+    _removeCookie(this.getStorageKey(key));
   }
   
-  getStorageKey(key: string) { 
+  private getStorageKey(key: string) { 
     return `${window.location.origin}_${key}`;
   }
 }

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { SvgIcon, SvgIconProps } from '@shared/components/svg-icon';
 import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
 

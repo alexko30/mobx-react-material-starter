@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { WithStyles, withStyles } from '@core/theme/utils/with-styles';
 import { Grid } from '@shared/components/grid';
 

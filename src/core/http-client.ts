@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-import { HttpInstance, HttpRequestConfig, HttpConfig, HttpSuccessResponse, HttpFailResponse, IHttpClient } from './types';
+import { HttpInstance, HttpRequestConfig, HttpConfig, HttpSuccessResponse, HttpFailResponse, IHttpClient } from '@shared/types/http-client';
 import { browser } from '@shared/utils/browser';
 import { TokenRefreshStatus } from '@shared/constants/auth';
 import { injectable } from '@core/di/utils';
@@ -16,7 +16,7 @@ export class HttpClient implements IHttpClient {
 		this._client = this.createClient();
 	}
 
-	setConfig(config: HttpConfig) {
+	setConfig: IHttpClient['setConfig'] = (config) => {
 		this.setClientConfig(config.defaults);
 		this.refreshToken = config.refreshToken;
 		this.getAccessToken = config.getAccessToken;
@@ -43,7 +43,7 @@ export class HttpClient implements IHttpClient {
 		return this._client.delete<T>(url, config);
 	}
 
-	generateCancelToken() {
+	generateCancelToken: IHttpClient['generateCancelToken'] = () => {
     return Axios.CancelToken.source();
   }
 

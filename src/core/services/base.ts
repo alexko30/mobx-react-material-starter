@@ -1,7 +1,8 @@
 import { injectable } from '@core/di/utils';
+import { IBaseService } from '@shared/types/base-service';
 
 @injectable()
-export class BaseService {
+export class BaseService implements IBaseService {
   protected urlPrefix = '';
 
   getUrl(path?: string | number) {

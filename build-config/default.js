@@ -48,6 +48,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
     new MiniCssExtractPlugin(),
     new CaseSensitivePathsPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),

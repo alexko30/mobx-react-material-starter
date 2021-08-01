@@ -2,7 +2,6 @@ import qs, { IParseOptions } from 'qs';
 import { LocationDescriptorObject } from 'history';
 import omitBy from 'lodash/omitBy';
 
-import { Queries } from '@shared/types/common';
 import { history } from '@shared/utils/history';
 
 export const getQueries = (options?: IParseOptions): Queries => qs.parse(

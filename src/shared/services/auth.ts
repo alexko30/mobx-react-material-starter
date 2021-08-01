@@ -1,28 +1,21 @@
-import { makeObservable } from 'mobx';
+import { observable } from 'mobx';
 
 import { inject, injectable } from '@core/di/utils';
 import { BaseService } from '@core/services/base';
 import { DI_TOKENS } from '@shared/constants/di';
 import { SystemUser } from '@shared/models/system-user';
 import { TokenRefreshStatus } from '@shared/constants/auth';
-import { IHttpClient } from '@core/http-client/types';
+import { IHttpClient } from '@shared/types/http-client';
+import { IAuthService } from '@shared/types/auth';
 
 @injectable()
-export class AuthService extends BaseService {
+export class AuthService extends BaseService implements IAuthService {
   protected urlPrefix = '/auth';
 
   private http = inject<IHttpClient>(DI_TOKENS.appHttpClient);
 
-  private _user: SystemUser;
-  private _tokenRefreshStatus: TokenRefreshStatus;
-
-  constructor() {
-    super();
-
-    makeObservable(this, {
-      
-    });
-  }
+  @observable private _user: SystemUser;
+  @observable private _tokenRefreshStatus: TokenRefreshStatus;
 
   get loggedIn() {
     return Boolean(this._user);
@@ -41,10 +34,10 @@ export class AuthService extends BaseService {
 
   async refreshToken() {}
 
-  activateAccount(data: { email: string; temporaryPassword: string; permanentPassword: string }) {
+  activateAccount: IAuthService['activateAccount'] = (data) => {
     const { email, temporaryPassword, permanentPassword } = data;
 
-    return this.http.post(
+    return this.http.post<void>(
       this.getUrl('set-permanent-password'),
       {
         email,
@@ -54,7 +47,7 @@ export class AuthService extends BaseService {
     );
   }
 
-  resetPassword(username: string) {
-    return this.http.post(this.getUrl('reset'), { email: username });
+  resetPassword: IAuthService['resetPassword'] = (username) => {
+    return this.http.post<void>(this.getUrl('reset'), { email: username });
   }
 }

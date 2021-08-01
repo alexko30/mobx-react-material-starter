@@ -3,13 +3,9 @@ import 'normalize.css';
 import 'reflect-metadata';
 import 'react-hot-loader';
 
-import React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router-dom';
 
-import { Config } from '@core/config';
-import { HttpClient } from '@core/http-client';
-import { AuthService } from '@shared/services/auth';
 import { history } from '@shared/utils/history';
 import { ThemeProvider } from '@core/theme/provider';
 import { CssBaseline } from '@core/theme/utils/css-baseline';
@@ -17,12 +13,15 @@ import { createTheme } from '@core/theme';
 import { inject } from '@core/di/utils';
 import { DI_TOKENS } from '@shared/constants/di';
 import { LazyLoad } from '@shared/components/lazy-load';
+import { IHttpClient } from '@shared/types/http-client';
+import { IConfig } from '@shared/types/config';
+import { IAuthService } from '@shared/types/auth';
 
 const App = React.lazy(() => import('./app'));
 
-const config = inject<Config>(DI_TOKENS.config);
-const httpClient = inject<HttpClient>(DI_TOKENS.appHttpClient);
-const authService = inject<AuthService>(DI_TOKENS.authService);
+const config = inject<IConfig>(DI_TOKENS.config);
+const httpClient = inject<IHttpClient>(DI_TOKENS.appHttpClient);
+const authService = inject<IAuthService>(DI_TOKENS.authService);
 
 const theme = createTheme();
 

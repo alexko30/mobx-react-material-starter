@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Loading } from '@shared/components/loading';
 import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
 

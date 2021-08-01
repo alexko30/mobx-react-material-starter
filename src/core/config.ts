@@ -1,17 +1,10 @@
 import { inject, injectable } from '@core/di/utils';
 import { DI_TOKENS } from '@shared/constants/di';
-import { IHttpClient } from './http-client/types';
-
-export interface ConfigType {
-  apiURL: {
-    origin: string;
-    prefix: string;
-  };
-  version: string;
-}
+import { IHttpClient } from '@shared/types/http-client';
+import { ConfigType, IConfig } from '@shared/types/config';
 
 @injectable()
-export class Config {
+export class Config implements IConfig {
   private config: ConfigType;
   private httpClient: IHttpClient = inject(DI_TOKENS.configHttpClient);
 
