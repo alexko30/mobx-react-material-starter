@@ -1,37 +1,38 @@
 {
   "compilerOptions": {
-    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
+    "baseUrl": ".",
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
-    "types": ["node"],
-    "emitDecoratorMetadata": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "downlevelIteration": true,
-    "baseUrl": ".",
-    "strict": true,
     "paths": {
       "@shared/*": ["src/shared/*"],
       "@modules/*": ["src/modules/*"],
       "@core/*": ["src/core/*"]
     },
-    "target": "es5",
-    "module": "esnext",
-    "lib": ["es6", "dom"],
-    "strictNullChecks": true,
-    "sourceMap": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "types": ["node"],
     "jsx": "react",
-    "skipLibCheck": true
+    "lib": ["es6", "dom"],
+    "module": "esnext",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "es5"
   },
   "compileOnSave": true,
-  "include": [
-    "node_modules",
-    "dist"
+  "exclude": [
+    "dist",
+    "./node_modules/**"
   ]
 }
+

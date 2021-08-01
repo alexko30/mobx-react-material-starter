@@ -12,11 +12,17 @@ module.exports = {
     chunkFilename: 'assets/[name].[fullhash].js',
   },
   mode: 'production',
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   optimization: {
     removeAvailableModules: true,
     splitChunks: {
-      minSize: 0,
       chunks: 'all',
+      minSize: 10000,
+      maxSize: 250000,
     },
   },
   devtool: 'source-map',
