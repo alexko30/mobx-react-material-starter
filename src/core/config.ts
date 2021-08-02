@@ -6,7 +6,7 @@ import { ConfigType, IConfig } from '@shared/types/config';
 @injectable()
 export class Config implements IConfig {
   private config: ConfigType;
-  private httpClient: IHttpClient = inject(DI_TOKENS.configHttpClient);
+  private httpClient = inject<IHttpClient>(DI_TOKENS.configHttpClient);
 
   initialize() {
     return this.setConfig();
