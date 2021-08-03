@@ -1,6 +1,6 @@
 import './polyfill';
 import 'normalize.css';
-import 'reflect-metadata';
+import '@core/di/dependencies';
 import 'react-hot-loader';
 
 import { render } from 'react-dom';
