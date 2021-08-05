@@ -7,7 +7,7 @@ export interface ConfigType {
 }
 
 export interface IConfig {
-  initialize: () => void;
+  initialize: () => Promise<void>;
   get: () => ConfigType;
   baseUrl: string;
 }

@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "jsx": "react",
     "lib": ["es6", "dom"],
     "module": "esnext",

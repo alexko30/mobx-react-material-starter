@@ -5,6 +5,7 @@ const TSconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const { globals } = require('../globals');
 const appDir = path.resolve(__dirname, '../');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -56,7 +57,7 @@ module.exports = {
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new webpack.ContextReplacementPlugin(/validatorjs\/src[\/\\]lang$/, /en/),
     new webpack.DefinePlugin({
-      IS_PRODUCTION: JSON.stringify(isProduction),
+      [globals.IS_PRODUCTION]: JSON.stringify(isProduction),
     }),
     new HtmlWebpackPlugin({ hash: false, template: './index.hbs', inject: true }),
   ],

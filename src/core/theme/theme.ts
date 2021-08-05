@@ -29,4 +29,3 @@ export function createTheme(options?: ThemeOptions) {
 
   return theme;
 }
-

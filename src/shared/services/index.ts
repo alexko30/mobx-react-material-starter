@@ -4,7 +4,7 @@ import { DI_TOKENS } from '@shared/constants/di';
 import { AuthService } from './auth';
 import { StorageService } from './storage';
 
-export const services: Array<{ diToken: DiEntityIdentifier; entity: any }> = [
+export const sharedAppServices: Array<{ diToken: DiEntityIdentifier; entity: any }> = [
   {
     diToken: DI_TOKENS.authService,
     entity: AuthService,
@@ -14,3 +14,5 @@ export const services: Array<{ diToken: DiEntityIdentifier; entity: any }> = [
     entity: StorageService,
   }
 ];
+
+export const sharedMockedServices: Array<{ diToken: DiEntityIdentifier; entity: any }> = [];

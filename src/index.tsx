@@ -16,6 +16,7 @@ import { LazyLoad } from '@shared/components/lazy-load';
 import { IHttpClient } from '@shared/types/http-client';
 import { IConfig } from '@shared/types/config';
 import { IAuthService } from '@shared/types/auth';
+import { initializeStateManagement } from '@core/state-management/setup';
 
 const App = React.lazy(() => import('./app'));
 
@@ -27,6 +28,7 @@ const theme = createTheme();
 
 async function initializeApp() {
   try {
+    initializeStateManagement();
     await config.initialize();
     httpClient.setConfig({
       defaults: {
