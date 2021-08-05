@@ -1,5 +1,5 @@
 import './polyfill';
-import 'normalize.css';
+import 'reset-css';
 import '@core/di/dependencies';
 import 'react-hot-loader';
 

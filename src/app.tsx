@@ -52,7 +52,7 @@ class App extends React.Component<AppProps> {
       <Typography component="div" className={classes.root}>
         <Route
           path="/"
-          render={() => <div style={{ display: 'flex', alignSelf: 'center', justifyContent: 'center' }}>Hello world!</div>}
+          render={() => <h6 style={{ display: 'flex', alignSelf: 'center', justifyContent: 'center' }}>Hello world!</h6>}
         />
       </Typography>
     );

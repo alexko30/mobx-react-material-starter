@@ -6,7 +6,7 @@ import { DI_TOKENS } from '@shared/constants/di';
 import { SystemUser } from '@shared/models/system-user';
 import { TokenRefreshStatus } from '@shared/constants/auth';
 import { IHttpClient } from '@shared/types/http-client';
-import { IAuthService } from '@shared/types/auth';
+import { IAuthService } from '@shared/types/auth-service';
 
 @injectable()
 export class AuthService extends BaseService implements IAuthService {
