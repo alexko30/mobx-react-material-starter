@@ -5,7 +5,7 @@ import { injectable } from '@core/di/utils';
 import { IStorageService, StorageType, StorageKey, StorageSetOptions } from '@shared/types/storage-service';
 
 type Methods = {
-  get: (key: StorageKey) => any | null;
+  get: (key: StorageKey) => any | undefined;
   set: (key: StorageKey, value: any, options?: StorageSetOptions) => void;
   remove: (key: StorageKey) => void;
 };
