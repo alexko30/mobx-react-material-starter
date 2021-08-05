@@ -3,6 +3,9 @@ export interface ConfigType {
     origin: string;
     prefix: string;
   };
+  cache: {
+    timeMinutes: number;
+  };
   version: string;
 }
 

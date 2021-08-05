@@ -3,10 +3,13 @@ import Axios from 'axios';
 import { HttpInstance, HttpRequestConfig, HttpConfig, HttpSuccessResponse, HttpFailResponse, IHttpClient } from '@shared/types/http-client';
 import { browser } from '@shared/utils/browser';
 import { TokenRefreshStatus } from '@shared/constants/auth';
-import { injectable } from '@core/di/utils';
+import { inject, injectable } from '@core/di/utils';
+import { ICacheService } from '@shared/types/cache-service';
+import { DI_TOKENS } from '@shared/constants/di';
 
 @injectable()
 export class HttpClient implements IHttpClient {
+  private cacheService = inject<ICacheService>(DI_TOKENS.cacheService)
 	private _client: HttpInstance;
   private getAccessToken?: HttpConfig['getAccessToken'];
   private refreshToken?: HttpConfig['refreshToken'];
@@ -23,7 +26,15 @@ export class HttpClient implements IHttpClient {
 		this.getTokenRefreshStatus = config.getTokenRefreshStatus;
   }
 
-	get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>> {
+	async get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T> | { data: T }> {
+    const cachedEntity = await this.cacheService.get<T>(url);
+
+    if (cachedEntity) {
+      return {
+        data: cachedEntity
+      };
+    }
+
 		return this._client.get<T>(url, config);
 	}
 

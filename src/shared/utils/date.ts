@@ -13,3 +13,5 @@ export const formatDate = (date: string | Date, format: string = 'll', utc: bool
 
   return moment(date).format(format);
 };
+
+export const dateUtils = moment;

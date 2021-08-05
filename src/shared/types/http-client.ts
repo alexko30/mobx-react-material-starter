@@ -24,6 +24,6 @@ export interface IHttpClient {
 	post<T = unknown>(url: string, body?: unknown, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>>;
 	put<T = unknown>(url: string, body?: unknown, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>>;
   generateCancelToken: () => HttpCancelToken;
-  get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>>;
+  get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T> | { data: T }>;
   setConfig: (config: HttpConfig) => void;
 }

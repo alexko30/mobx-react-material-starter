@@ -3,5 +3,8 @@
     "origin": "https://api.app.com",
     "prefix": "/v1"
   },
+  "cache": {
+    "timeMinutes": 60
+  },
   "version": "1.0.0"
 }

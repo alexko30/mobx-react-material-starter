@@ -14,4 +14,5 @@ export const DI_TOKENS = createTokens({
   authService: Symbol('auth-service'),
   storageService: Symbol('auth-service'),
   logger: Symbol('logger'),
+  cacheService: Symbol('cache-service'),
 });

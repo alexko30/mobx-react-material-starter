@@ -1,24 +1,56 @@
-import { set as _setCookie, get as _getCookie, remove as _removeCookie } from 'js-cookie';
+import { set as setCookie, get as getCookie, remove as removeCookie } from 'js-cookie';
+import { set as setLocalStorage, get as getLocalStorage, remove as removeLocalStorage } from 'local-storage';
 
 import { injectable } from '@core/di/utils';
-import { BaseService } from '@core/services/base';
-import { IStorageService } from '@shared/types/storage';
+import { IStorageService, StorageType, StorageKey, StorageSetOptions } from '@shared/types/storage-service';
+
+type Methods = {
+  get: (key: StorageKey) => any | null;
+  set: (key: StorageKey, value: any, options?: StorageSetOptions) => void;
+  remove: (key: StorageKey) => void;
+};
 
 @injectable()
-export class StorageService extends BaseService implements IStorageService {
-  getCookie: IStorageService['getCookie'] = (key) => {
-    return _getCookie(this.getStorageKey(key));
+export class StorageService implements IStorageService {
+  private get methods(): { [type in StorageType]: Methods } {
+    return {
+      cookie: {
+        get: getCookie,
+        set: setCookie,
+        remove: (key) => removeCookie(key)
+      },
+      localStorage: {
+        get: getLocalStorage,
+        set: setLocalStorage,
+        remove: removeLocalStorage,
+      },
+    };
+  }
+
+  get: IStorageService['get'] = (type, key) => {    
+    return this.methods[type].get(this.getStorageKey(key));
   }
   
-  setCookie: IStorageService['setCookie'] = (key, value, options) => {
-    _setCookie(this.getStorageKey(key), value, { sameSite: 'Lax', ...options });
+  set: IStorageService['set'] = (type, key, value, options) => {
+    const defaultOptions: Partial<Record<StorageType, StorageSetOptions>> = {
+      cookie: { sameSite: 'Lax' },
+    };
+
+    this.methods[type].set(
+      this.getStorageKey(key), 
+      value, 
+      { 
+        ...defaultOptions[type],
+        ...options
+      }
+    );
   }
   
-  removeCookie: IStorageService['removeCookie'] = (key) => {
-    _removeCookie(this.getStorageKey(key));
+  remove: IStorageService['remove'] = (type, key) => {
+    this.methods[type].remove(this.getStorageKey(key));
   }
-  
-  private getStorageKey(key: string) { 
+
+  private getStorageKey(key: StorageKey) { 
     return `${window.location.origin}_${key}`;
   }
 }
