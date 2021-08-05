@@ -38,7 +38,7 @@
     "start": "webpack serve --config ./build-config/development.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build-config/production.js",
     "preview": "pushstate-server ./dist 4200",
-    "test": "jest"
+    "test": "jest --config=./test.config.js"
   },
   "keywords": [],
   "dependencies": {
