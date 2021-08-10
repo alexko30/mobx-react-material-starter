@@ -401,7 +401,7 @@ Library could be encapsulated in one of the next places:
 
 ### Development with stubs
 
-There are cases when the UI started to develop a feature when the Back End is not ready. In this case all data related logic should be in service, so that when the API will be ready the only one place will be changed - service.
+There are cases when the UI started to develop a feature when the Back End is not ready. In this case all data related logic should be in service, so that when the API will be ready the only one place will be changed - service. The components, View models should not know that the current data is fake.
 
 # Conventions
 
