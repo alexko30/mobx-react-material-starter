@@ -338,7 +338,7 @@ Per each component which should be tested should be created a separate file in t
     - index.tx
 ```
 
-When creating and integration test, often there is a need to mock the Service (data access layer).
+When creating an integration test, often there is a need to mock the Service (data access layer).
 In this case:
 
 ```ts
@@ -367,7 +367,7 @@ To encapsulate all the http requests logic there is a http-client which has requ
 
 ### Library encapsulation
 
-Every library which is used in the project should be encapsulated in one file(s) to simply migrate from one library to another across the project. For example
+Every library which is used in the project should be encapsulated in one file(s) to simply migrate from one library to another across the project if it is needed. For example
 
 Instead of:
 ```tsx
@@ -396,8 +396,12 @@ const Page = observer(() => {
 ```
 
 Library could be encapsulated in one of the next places:
-  1. if there is a logic in the application with that library, like with state-management, or di, then in that directory encapsulate the library;
+  1. if there is a logic in the application with that library setup, like with state-management, or di, then in that directory encapsulate the library;
   2. if it is a simple library like lodash, retrieve the needed functions and place in the related folder, in most cases it is shared/utils/*;
+
+### Development with stubs
+
+There are cases when the UI started to develop a feature when the Back End is not ready. In this case all data related logic should be in service, so that when the API will be ready the only one place will be changed - service.
 
 # Conventions
 
@@ -413,8 +417,8 @@ export const PhoneIcon = () => {
   return ...
 };
 ```
-  - commit message: <type>(<task-id>)<subject>. eg: feat (zs-255) User registration. Integration
-  - commit message, branch name: <type>/<task-id>/<subject>. eg: feat/zs-255/user-registration-integration
+  - commit message: `<type>(<task-id>)<subject>`. eg: feat (zs-255) User registration. Integration
+  - commit message, branch name: `<type>/<task-id>/<subject>`. eg: feat/zs-255/user-registration-integration
   feat (new feature for the user, not a new feature for build script);
   fix (bugfix, hotfix);
   refactor (rewriting the functionality);
