@@ -5,14 +5,14 @@ import { HttpClient } from '@core/http-client';
 import { BaseService } from '@core/services/base';
 import { sharedAppServices } from '@shared/services';
 import { DI_TOKENS } from '@shared/constants/di';
-import { DiEntityIdentifier } from './types';
+import { DiEntity, DiEntityIdentifier } from './types';
 import { Logger } from '@core/logger';
 import { CacheService } from '@core/services/cache';
 import { StorageService } from '@core/services/storage';
 
 const diContainer = new Container();
 
-const entitiesConfig: Array<{ diToken: DiEntityIdentifier; entity: any }> = [
+const entitiesConfig: Array<{ diToken: DiEntityIdentifier; entity: DiEntity }> = [
   { diToken: DI_TOKENS.config, entity: Config },
   { diToken: DI_TOKENS.cacheService, entity: CacheService },
   { diToken: DI_TOKENS.appHttpClient, entity: HttpClient },

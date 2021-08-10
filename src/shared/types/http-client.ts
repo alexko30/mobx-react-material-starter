@@ -6,7 +6,9 @@ export interface HttpSuccessResponse<T> extends AxiosResponse<T> { };
 
 export interface HttpFailResponse<T> extends AxiosError<T> { }
 
-export type HttpRequestConfig = AxiosRequestConfig;
+export interface HttpRequestConfig extends AxiosRequestConfig {
+  cache?: boolean;
+}
 export type HttpInstance = AxiosInstance;
 export type HttpCancelToken = CancelTokenSource;
 

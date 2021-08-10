@@ -27,15 +27,21 @@ export class HttpClient implements IHttpClient {
   }
 
 	async get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T> | { data: T }> {
-    const cachedEntity = await this.cacheService.get<T>(url);
-
-    if (cachedEntity) {
-      return {
-        data: cachedEntity
-      };
+    if (config?.cache) {
+      const cachedEntity = await this.cacheService.get<T>(url);
+  
+      if (cachedEntity) {
+        return {
+          data: cachedEntity
+        };
+      }
     }
 
-		return this._client.get<T>(url, config);
+		const response = await this._client.get<T>(url, config);
+
+    await this.cacheService.set<T>(url, response.data);
+
+    return response;
 	}
 
 	post<T = unknown>(url: string, body?: unknown, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>> {
