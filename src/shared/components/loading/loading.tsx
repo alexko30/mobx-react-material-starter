@@ -1,11 +1,11 @@
 import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
 import cx from 'classnames';
 
-import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
+import { appWithStyles, AppWithStyles } from '@core/theme/utils/with-styles';
 
 import { styles } from './loading.styles';
 
-export interface LoadingProps extends WithStyles<typeof styles>, Omit<CircularProgressProps, 'classes'> {
+export interface LoadingProps extends AppWithStyles<typeof styles>, Omit<CircularProgressProps, 'classes'> {
   margin?: 'none' | 'small' | 'normal' | 'big';
   absolute?: boolean;
   height?: number | string;
@@ -22,4 +22,4 @@ const LoadingComponent: React.FC<LoadingProps> = ({ classes, margin = 'none', si
   );
 };
 
-export const Loading = withStyles(styles)(LoadingComponent);
+export const Loading = appWithStyles(styles)(LoadingComponent);

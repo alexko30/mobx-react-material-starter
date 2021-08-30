@@ -1,5 +1,5 @@
-import { WithStyles, withStyles } from '@core/theme/utils/with-styles';
-import { Grid } from '@shared/components/grid';
+import { AppWithStyles, appWithStyles } from '@core/theme/utils/with-styles';
+import { AppGrid } from '@shared/components/grid';
 
 import { styles } from './message.styles';
 
@@ -9,13 +9,13 @@ export interface MessageConfig {
   icon?: React.ReactNode;
 }
 
-export interface MessageProps extends WithStyles<typeof styles>, MessageConfig {}
+export interface MessageProps extends AppWithStyles<typeof styles>, MessageConfig {}
 
 const MessageComponent: React.FC<MessageProps> = (props) => {
   const { classes, heading, icon, subheading, ...otherProps } = props;
 
   return (
-    <Grid
+    <AppGrid
       container
       className={classes.root}
       justify="center"
@@ -23,10 +23,10 @@ const MessageComponent: React.FC<MessageProps> = (props) => {
       direction="column"
       {...otherProps}
     >
-      {heading && <Grid item>{<h4 className={classes.heading}>{heading}</h4>}</Grid>}
-      {icon && <Grid item classes={{ root: classes.icon }}>{icon}</Grid>}
-      {subheading && <Grid item>{<h4 className={classes.subheading}>{subheading}</h4>}</Grid>}
-    </Grid>
+      {heading && <AppGrid item>{<h4 className={classes.heading}>{heading}</h4>}</AppGrid>}
+      {icon && <AppGrid item classes={{ root: classes.icon }}>{icon}</AppGrid>}
+      {subheading && <AppGrid item>{<h4 className={classes.subheading}>{subheading}</h4>}</AppGrid>}
+    </AppGrid>
   );
 };
 
@@ -34,4 +34,4 @@ MessageComponent.defaultProps = {
   icon: null,
 };
 
-export const Message = withStyles(styles)(MessageComponent);
+export const Message = appWithStyles(styles)(MessageComponent);

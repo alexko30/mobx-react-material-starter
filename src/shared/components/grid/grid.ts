@@ -1,3 +1,3 @@
-export { default as Grid } from '@material-ui/core/Grid';
+export { default as AppGrid } from '@material-ui/core/Grid';
 
-export * from '@material-ui/core/Grid';
+export type { GridProps as AppGridProps } from '@material-ui/core/Grid';

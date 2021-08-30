@@ -1,10 +1,10 @@
-import { ILogger, LoggerLevel, LoggerEntity, LoggerData, LOGGER_LEVEL_LABEL, LOGGER_LEVEL_RANK } from '@shared/types/logger';
+import { ILoggerService, LoggerLevel, LoggerEntity, LoggerData, LOGGER_LEVEL_LABEL, LOGGER_LEVEL_RANK } from '@shared/types/logger';
 import { generateId } from '@shared/utils/id';
  
-export class Logger implements ILogger {
+export class LoggerService implements ILoggerService {
   private level: LoggerLevel = LoggerLevel.info;
  
-  setLevel: ILogger['setLevel'] = (level) => {
+  setLevel: ILoggerService['setLevel'] = (level) => {
     this.level = level;
   }
  
@@ -26,7 +26,7 @@ export class Logger implements ILogger {
     };
   }
  
-  log: ILogger['log'] = async (level, message, data) => {
+  log: ILoggerService['log'] = async (level, message, data) => {
     const shouldIgnore = LOGGER_LEVEL_RANK[level] > LOGGER_LEVEL_RANK[this.level] || !IS_PRODUCTION;
  
     if (shouldIgnore) {
@@ -43,19 +43,19 @@ export class Logger implements ILogger {
     }
   }
  
-  error: ILogger['error'] = (...args) => {
+  error: ILoggerService['error'] = (...args) => {
     return this.log(LoggerLevel.error, ...args);
   }
  
-  warn: ILogger['warn'] = (...args) => {
+  warn: ILoggerService['warn'] = (...args) => {
     return this.log(LoggerLevel.warn, ...args);
   }
   
-  info: ILogger['info'] = (...args) => {
+  info: ILoggerService['info'] = (...args) => {
     return this.log(LoggerLevel.info, ...args);
   }
  
-  debug: ILogger['debug'] = (...args) => {
+  debug: ILoggerService['debug'] = (...args) => {
     return this.log(LoggerLevel.debug, ...args);
   }
  

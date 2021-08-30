@@ -1,6 +1,6 @@
-import { TransitionsOptions } from '@core/theme/types/main';
+import { AppTransitionsOptions } from '@core/theme/types/main';
 
-export const initializeTransitions = (config?: TransitionsOptions): TransitionsOptions => {
+export const initializeTransitions = (config?: AppTransitionsOptions): AppTransitionsOptions => {
   return {
     ...config
   };

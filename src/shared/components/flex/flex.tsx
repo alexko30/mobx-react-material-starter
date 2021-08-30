@@ -1,11 +1,11 @@
-import { Grid, GridProps } from '@shared/components/grid';
+import { AppGrid, AppGridProps } from '@shared/components/grid';
 
-export interface FlexProps extends GridProps {
+export interface FlexProps extends AppGridProps {
   autoWidth?: boolean;
 }
 
 export const Flex: React.FC<FlexProps> = ({ autoWidth, ...otherProps }) => {
-  return <Grid style={autoWidth ? { width: 'auto' } : {}} container {...otherProps} />;
+  return <AppGrid style={autoWidth ? { width: 'auto' } : {}} container {...otherProps} />;
 };
 
 Flex.defaultProps = {

@@ -1,6 +1,6 @@
-import { BreakpointsOptions } from '@core/theme/types/main';
+import { AppBreakpointsOptions } from '@core/theme/types/main';
 
-export const initializeBreakpoints = (config?: BreakpointsOptions): BreakpointsOptions => {
+export const initializeBreakpoints = (config?: AppBreakpointsOptions): AppBreakpointsOptions => {
   return {
     ...config
   };

@@ -1,4 +1,4 @@
-import { ThemeOptions } from './types/main';
+import { AppThemeOptions } from './types/main';
 import { initializeBreakpoints } from './units/breakpoints';
 import { initializeComponentsProps } from './units/components-props';
 import { initializeDirection } from './units/direction';
@@ -10,10 +10,10 @@ import { initializeShape } from './units/shape';
 import { initializeSpacing } from './units/spacing';
 import { initializeTransitions } from './units/transitions';
 import { initializeTypography } from './units/typography';
-import { createTheme as createThemeNative } from './utils/theme';
+import { appCreateTheme as appCreateThemeCore } from './utils/theme';
 
-export function createTheme(options?: ThemeOptions) {
-  const theme = createThemeNative({
+export function appCreateTheme(options?: AppThemeOptions) {
+  const theme = appCreateThemeCore({
     breakpoints: initializeBreakpoints(options?.breakpoints),
     direction: initializeDirection(options?.direction),
     mixins: initializeMixins(options?.mixins),

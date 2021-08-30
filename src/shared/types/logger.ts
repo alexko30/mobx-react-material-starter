@@ -9,7 +9,7 @@ export type LoggerData = string | Json;
  
 type LoggerTypeFunction = (message: string, data?: LoggerData) => Promise<void>;
  
-export interface ILogger {
+export interface ILoggerService {
   clearLogs: () => Promise<void>;
   debug: LoggerTypeFunction
   error: LoggerTypeFunction

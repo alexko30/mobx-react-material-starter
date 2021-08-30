@@ -1,19 +1,19 @@
 import { BaseModel } from '@core/base-model';
 
-export interface EntityNameCreateDTO {
+export interface EntityNameCreateCommand {
   name: string;
 }
 
-export class EntityNameCreateModel extends BaseModel<EntityNameCreateDTO> {
+export class EntityNameCreateModel extends BaseModel<EntityNameCreateCommand> {
   private name: string;
 
-  constructor(dto: EntityNameCreateDTO) {
-    super(dto);
+  constructor(data: EntityNameCreateCommand) {
+    super();
 
-    this.update(dto);
+    this.update(data);
   }
 
-  get asJson(): EntityNameCreateDTO {
+  get asJson(): EntityNameCreateCommand {
     return {
       name: this.name,
     };

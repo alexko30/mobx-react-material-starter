@@ -6,9 +6,7 @@ export interface HttpSuccessResponse<T> extends AxiosResponse<T> { };
 
 export interface HttpFailResponse<T> extends AxiosError<T> { }
 
-export interface HttpRequestConfig extends AxiosRequestConfig {
-  cache?: boolean;
-}
+export type HttpRequestConfig = AxiosRequestConfig;
 export type HttpInstance = AxiosInstance;
 export type HttpCancelToken = CancelTokenSource;
 
@@ -20,7 +18,7 @@ export interface HttpConfig {
   getUserLoginStatus?: () => boolean;
 }
 
-export interface IHttpClient {
+export interface IHttpClientService {
 	delete<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>>;
 	patch<T = unknown>(url: string, body?: unknown, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>>;
 	post<T = unknown>(url: string, body?: unknown, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>>;

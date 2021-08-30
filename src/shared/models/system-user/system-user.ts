@@ -12,10 +12,10 @@ export class SystemUser extends BaseModel<SystemUserDTO> {
   id: string;
   role: SystemUserRole;
 
-  constructor(dto: SystemUserDTO) {
-    super(dto);
+  constructor(data: SystemUserDTO) {
+    super();
 
-    this.update(dto);
+    this.update(data);
   }
 
   get asJson(): SystemUserDTO {

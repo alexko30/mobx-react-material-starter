@@ -1,6 +1,6 @@
-import { ThemeOptions, TypographyOptions } from '@core/theme/types/main';
+import { AppThemeOptions, AppTypographyOptions } from '@core/theme/types/main';
 
-export const initializeTypography = (config?: ThemeOptions['typography']): TypographyOptions => {
+export const initializeTypography = (config?: AppThemeOptions['typography']): AppTypographyOptions => {
   return {
     ...config
   };

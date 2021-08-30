@@ -1,7 +1,7 @@
-import { createStyles } from '@core/theme/utils/create-styles';
+import { appCreateStyles } from '@core/theme/utils/create-styles';
 
 export function styles() { 
-  return createStyles({
+  return appCreateStyles({
     root: {
       height: '100%',
       minHeight: 400,

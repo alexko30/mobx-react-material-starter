@@ -1,9 +1,9 @@
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import appWithStyles, { WithStyles as AppWithStyles } from '@material-ui/core/styles/withStyles';
 
 export {
-  withStyles
+  appWithStyles
 };
 
 export type { 
-  WithStyles 
+  AppWithStyles 
 };

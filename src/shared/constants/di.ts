@@ -7,12 +7,11 @@ function createTokens<Key extends string>(
 }
 
 export const DI_TOKENS = createTokens({
-  config: Symbol('config'),
-  appHttpClient: Symbol('app-http-client'),
-  configHttpClient: Symbol('config-http-client'),
-  baseService: Symbol('base'),
+  configService: Symbol('config-service'),
+  appHttpClientService: Symbol('app-http-client-service'),
+  configHttpClientService: Symbol('config-http-client-service'),
+  baseService: Symbol('base-service'),
   authService: Symbol('auth-service'),
-  storageService: Symbol('auth-service'),
-  logger: Symbol('logger'),
-  cacheService: Symbol('cache-service'),
+  storageService: Symbol('storage-service'),
+  loggerService: Symbol('logger-service'),
 });

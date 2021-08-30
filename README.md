@@ -36,8 +36,7 @@ npm run test
 Each entity in the system should have a domain model. This model should be:
   - named as in-project convention (shouldn't be used any synonyms);
   - structured and initialized as is (no field names or values overrides);
-  - should not use any library to make it technology agnostic;
-  - should not know anything about other models.
+  - should not use any library to make it technology agnostic.
 
 ![](/readme/abstract-architecture.png)
 
@@ -46,8 +45,8 @@ Each entity in the system should have a domain model. This model should be:
 ```ts
 // base-model.ts
 export abstract class BaseModel<T> {
-  constructor(dto: T) {
-    this.update(dto);
+  constructor(data: T) {
+    this.update(data);
   }
   
   abstract get asJson(): T;
@@ -72,10 +71,10 @@ export class UserGetModel extends BaseModel<UserGetDTO> {
   private id: string;
   private name: string;
 
-  constructor(dto: UserGetDTO) {
-    super(dto);
+  constructor(data: UserGetDTO) {
+    super();
 
-    this.update(dto);
+    this.update(data);
   }
 
   get asJson(): UserGetDTO {
@@ -99,10 +98,10 @@ export class ProjectGetModel extends BaseModel<ProjectGetDTO> {
   private id: string;
   private status: ProjectStatus;
 
-  constructor(dto: ProjectGetDTO) {
-    super(dto);
+  constructor(data: ProjectGetDTO) {
+    super();
 
-    this.update(dto);
+    this.update(data);
   }
 
   canAddPeople() {
@@ -192,7 +191,7 @@ import { appMakeAutoObservable, appObservable } from '@core/state-management/uti
 
 class UsersVM {
   private _users: Array<UsersListModel> = [];
-  private usersService = inject<IUsersService>(DI_TOKENS.usersService);
+  private usersService = appInject<IUsersService>(DI_TOKENS.usersService);
 
   constructor() {
     makeAutoObservable(this, {
@@ -268,7 +267,7 @@ export interface IAuthService {
 
 // shared/services/auth.ts
 
-@injectable()
+@appInjectable()
 export class AuthService implements IAuthService {
   login: IAuthService['login'] = (data) => { // type declaration is used to eliminate type declaration duplication
     // ...
@@ -285,7 +284,7 @@ export class AuthService implements IAuthService {
 
 // shared/services/another-auth.ts
 
-@injectable()
+@appInjectable()
 export class AnotherAuthService implements IAuthService {
   login: IAuthService['login'] = (data) => {
     // ...
@@ -304,7 +303,7 @@ export class AnotherAuthService implements IAuthService {
 // because any auth service implements interface.
 
 export class LoginVM {
-  private authService = inject<IAuthService>(DI_TOKENS.authService);
+  private authService = appInject<IAuthService>(DI_TOKENS.authService);
 }
 ```
 
@@ -353,6 +352,10 @@ Then during the test setup simply rebind the services with:
 ```ts
 rebind(DI_TOKENS.configService, ConfigMockedService);
 ```
+
+### Constants
+
+
 
 ### Caching
 
@@ -427,6 +430,7 @@ export const PhoneIcon = () => {
   infra (infrastructure setup like build setup, state management);
   - no library, technologies specific names (files, variables, anything);
   - any component, page should have root class;
+  - any error should be caught and after show a notification to user about this;
 
 <hr />
 

@@ -1,6 +1,6 @@
-import { ZIndexOptions } from '@core/theme/types/main';
+import { AppZIndexOptions } from '@core/theme/types/main';
 
-export const initializeZIndex = (config?: ZIndexOptions): ZIndexOptions => {
+export const initializeZIndex = (config?: AppZIndexOptions): AppZIndexOptions => {
   return {
     ...config
   };

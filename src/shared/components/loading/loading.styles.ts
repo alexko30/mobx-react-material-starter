@@ -1,9 +1,9 @@
-import { Theme } from '@core/theme/types/main';
-import { alpha } from '@core/theme/utils/alpha';
-import { createStyles } from '@core/theme/utils/create-styles';
+import { AppTheme } from '@core/theme/types/main';
+import { appAlpha } from '@core/theme/utils/alpha';
+import { appCreateStyles } from '@core/theme/utils/create-styles';
 
-export function styles({ spacing }: Theme) { 
-  return createStyles({
+export function styles({ spacing }: AppTheme) { 
+  return appCreateStyles({
     root: {
       display: 'flex',
       justifyContent: 'center',
@@ -17,7 +17,7 @@ export function styles({ spacing }: Theme) {
       left: 0,
       right: 0,
       zIndex: 3,
-      backgroundColor: alpha('#fff', .5)
+      backgroundColor: appAlpha('#fff', .5)
     },
     none: {
       margin: 0,

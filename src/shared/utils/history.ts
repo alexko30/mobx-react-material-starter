@@ -1,3 +1,6 @@
 import { createBrowserHistory } from 'history';
 
-export const history = createBrowserHistory();
+export const appHistory = createBrowserHistory();
+export type {
+  LocationDescriptorObject as AppLocationDescriptorObject
+} from 'history';

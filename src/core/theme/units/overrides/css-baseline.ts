@@ -1,6 +1,6 @@
-import { Overrides } from '@core/theme/types/main';
+import { AppOverrides } from '@core/theme/types/main';
 
-export const initializeCssBaselineOverrides = (config?: Overrides['MuiCssBaseline']): Overrides['MuiCssBaseline'] => {
+export const initializeCssBaselineOverrides = (config?: AppOverrides['MuiCssBaseline']): AppOverrides['MuiCssBaseline'] => {
   return {
     ...config,
     '@global': {

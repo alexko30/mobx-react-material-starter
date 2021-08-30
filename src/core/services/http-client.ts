@@ -1,15 +1,12 @@
 import Axios from 'axios';
 
-import { HttpInstance, HttpRequestConfig, HttpConfig, HttpSuccessResponse, HttpFailResponse, IHttpClient } from '@shared/types/http-client';
+import { HttpInstance, HttpRequestConfig, HttpConfig, HttpSuccessResponse, HttpFailResponse, IHttpClientService } from '@shared/types/http-client';
 import { browser } from '@shared/utils/browser';
 import { TokenRefreshStatus } from '@shared/constants/auth';
-import { inject, injectable } from '@core/di/utils';
-import { ICacheService } from '@shared/types/cache-service';
-import { DI_TOKENS } from '@shared/constants/di';
+import { appInjectable } from '@core/di/utils';
 
-@injectable()
-export class HttpClient implements IHttpClient {
-  private cacheService = inject<ICacheService>(DI_TOKENS.cacheService)
+@appInjectable()
+export class HttpClientService implements IHttpClientService {
 	private _client: HttpInstance;
   private getAccessToken?: HttpConfig['getAccessToken'];
   private refreshToken?: HttpConfig['refreshToken'];
@@ -19,29 +16,15 @@ export class HttpClient implements IHttpClient {
 		this._client = this.createClient();
 	}
 
-	setConfig: IHttpClient['setConfig'] = (config) => {
+	setConfig: IHttpClientService['setConfig'] = (config) => {
 		this.setClientConfig(config.defaults);
 		this.refreshToken = config.refreshToken;
 		this.getAccessToken = config.getAccessToken;
 		this.getTokenRefreshStatus = config.getTokenRefreshStatus;
   }
 
-	async get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T> | { data: T }> {
-    if (config?.cache) {
-      const cachedEntity = await this.cacheService.get<T>(url);
-  
-      if (cachedEntity) {
-        return {
-          data: cachedEntity
-        };
-      }
-    }
-
-		const response = await this._client.get<T>(url, config);
-
-    await this.cacheService.set<T>(url, response.data);
-
-    return response;
+	async get<T = unknown>(url: string, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>> {
+    return this._client.get<T>(url, config);
 	}
 
 	post<T = unknown>(url: string, body?: unknown, config?: HttpRequestConfig): Promise<HttpSuccessResponse<T>> {
@@ -60,7 +43,7 @@ export class HttpClient implements IHttpClient {
 		return this._client.delete<T>(url, config);
 	}
 
-	generateCancelToken: IHttpClient['generateCancelToken'] = () => {
+	generateCancelToken: IHttpClientService['generateCancelToken'] = () => {
     return Axios.CancelToken.source();
   }
 

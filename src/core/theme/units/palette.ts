@@ -1,6 +1,6 @@
-import { PaletteOptions  } from '@core/theme/types/main';
+import { AppPaletteOptions  } from '@core/theme/types/main';
 
-export const initializePalette = (config?: PaletteOptions): PaletteOptions  => {
+export const initializePalette = (config?: AppPaletteOptions): AppPaletteOptions  => {
   return {
     ...config
   };

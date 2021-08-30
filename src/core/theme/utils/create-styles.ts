@@ -1,5 +1,5 @@
-import createStyles from '@material-ui/styles/createStyles';
+import appCreateStyles from '@material-ui/styles/createStyles';
 
 export {
-  createStyles
+  appCreateStyles
 };

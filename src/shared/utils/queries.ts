@@ -1,11 +1,10 @@
 import qs, { IParseOptions } from 'qs';
-import { LocationDescriptorObject } from 'history';
 import omitBy from 'lodash/omitBy';
 
-import { history } from '@shared/utils/history';
+import { appHistory, AppLocationDescriptorObject } from '@shared/utils/history';
 
 export const getQueries = (options?: IParseOptions): Queries => qs.parse(
-  history.location.search,
+  appHistory.location.search,
   { ignoreQueryPrefix: true, arrayLimit: Infinity, ...options }
 );
 
@@ -14,20 +13,20 @@ export const parseQueries = (queries: string): Queries => qs.parse(queries, { ig
 export const getQueriesAsSearch = (queries?: Queries): string =>
   qs.stringify({ ...(queries || getQueries()) }, { addQueryPrefix: true, encode: true });
 
-export const setQueries = (queries: Queries, replace?: boolean, locationArgs?: Partial<LocationDescriptorObject>) => {
+export const setQueries = (queries: Queries, replace?: boolean, locationArgs?: Partial<AppLocationDescriptorObject>) => {
   const args = {
     search: qs.stringify(omitBy(queries, (value) => !value), { addQueryPrefix: true }),
     ...locationArgs
   };
 
   if (replace) {
-    return history.replace(args);
+    return appHistory.replace(args);
   }
 
-  return history.push(args);
+  return appHistory.push(args);
 };
 
-export const deleteQueries = (queriesToDelete?: Array<string>, replace?: boolean, locationArgs?: Partial<LocationDescriptorObject>) => {
+export const deleteQueries = (queriesToDelete?: Array<string>, replace?: boolean, locationArgs?: Partial<AppLocationDescriptorObject>) => {
   if (!queriesToDelete) {
     return setQueries({}, replace, locationArgs);
   }

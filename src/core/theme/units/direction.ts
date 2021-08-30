@@ -1,5 +1,5 @@
-import { Direction } from '@core/theme/types/main';
+import { AppDirection } from '@core/theme/types/main';
 
-export const initializeDirection = (value?: Direction): Direction | undefined => {
+export const initializeDirection = (value?: AppDirection): AppDirection | undefined => {
   return value;
 };

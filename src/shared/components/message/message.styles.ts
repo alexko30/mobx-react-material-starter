@@ -1,8 +1,8 @@
-import { Theme } from '@core/theme/types/main';
-import { createStyles } from '@core/theme/utils/create-styles';
+import { AppTheme } from '@core/theme/types/main';
+import { appCreateStyles } from '@core/theme/utils/create-styles';
 
-export function styles({ spacing }: Theme) { 
-  return createStyles({
+export function styles({ spacing }: AppTheme) { 
+  return appCreateStyles({
     root: {
       padding: spacing(3, 0),
       minHeight: 100

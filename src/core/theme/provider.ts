@@ -1,1 +1,1 @@
-export { ThemeProvider } from '@material-ui/core/styles';
+export { ThemeProvider as AppThemeProvider } from '@material-ui/core/styles';

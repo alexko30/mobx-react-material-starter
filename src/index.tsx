@@ -6,33 +6,30 @@ import 'react-hot-loader';
 import { render } from 'react-dom';
 import { Router } from 'react-router-dom';
 
-import { history } from '@shared/utils/history';
-import { ThemeProvider } from '@core/theme/provider';
-import { CssBaseline } from '@core/theme/utils/css-baseline';
-import { createTheme } from '@core/theme';
-import { inject } from '@core/di/utils';
+import { appHistory } from '@shared/utils/history';
+import { AppThemeProvider } from '@core/theme/provider';
+import { AppCssBaseline } from '@core/theme/utils/css-baseline';
+import { appCreateTheme } from '@core/theme';
+import { appInject } from '@core/di/utils';
 import { DI_TOKENS } from '@shared/constants/di';
 import { LazyLoad } from '@shared/components/lazy-load';
-import { IHttpClient } from '@shared/types/http-client';
-import { IConfig } from '@shared/types/config';
+import { IHttpClientService } from '@shared/types/http-client';
+import { IConfigService } from '@shared/types/config-service';
 import { IAuthService } from '@shared/types/auth-service';
 import { initializeStateManagement } from '@core/state-management/setup';
-import { ICacheService } from '@shared/types/cache-service';
 
 const App = React.lazy(() => import('./app'));
 
-const config = inject<IConfig>(DI_TOKENS.config);
-const cacheService = inject<ICacheService>(DI_TOKENS.cacheService);
-const httpClient = inject<IHttpClient>(DI_TOKENS.appHttpClient);
-const authService = inject<IAuthService>(DI_TOKENS.authService);
+const config = appInject<IConfigService>(DI_TOKENS.configService);
+const httpClient = appInject<IHttpClientService>(DI_TOKENS.appHttpClientService);
+const authService = appInject<IAuthService>(DI_TOKENS.authService);
 
-const theme = createTheme();
+const theme = appCreateTheme();
 
 async function initializeApp() {
   try {
     initializeStateManagement();
     await config.initialize();
-    cacheService.initialize({ cacheTimeMinutes: config.get().cache.timeMinutes });
     httpClient.setConfig({
       defaults: {
         baseURL: config.baseUrl
@@ -45,13 +42,13 @@ async function initializeApp() {
 
     render(
       (
-        <Router history={history}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <Router history={appHistory}>
+          <AppThemeProvider theme={theme}>
+            <AppCssBaseline />
             <LazyLoad>
               <App />
             </LazyLoad>
-          </ThemeProvider>
+          </AppThemeProvider>
         </Router>
       ),
       document.getElementById('root')

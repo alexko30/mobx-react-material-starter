@@ -1,7 +1,7 @@
-import { set as setCookie, get as getCookie, remove as removeCookie } from 'js-cookie';
+import { set as setCookie, getJSON as getCookie, remove as removeCookie } from 'js-cookie';
 import { set as setLocalStorage, get as getLocalStorage, remove as removeLocalStorage } from 'local-storage';
 
-import { injectable } from '@core/di/utils';
+import { appInjectable } from '@core/di/utils';
 import { IStorageService, StorageType, StorageKey, StorageSetOptions } from '@shared/types/storage-service';
 
 type Methods = {
@@ -10,7 +10,7 @@ type Methods = {
   remove: (key: StorageKey) => void;
 };
 
-@injectable()
+@appInjectable()
 export class StorageService implements IStorageService {
   private get methods(): { [type in StorageType]: Methods } {
     return {

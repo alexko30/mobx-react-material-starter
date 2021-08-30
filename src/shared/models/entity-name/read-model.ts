@@ -1,24 +1,24 @@
 import { BaseModel } from '@core/base-model';
 import { EntityType } from './type';
 
-export interface EntityNameReadDTO {
+export interface EntityNameReadQuery {
   id: string;
   name: string;
   type: EntityType;
 }
 
-export class EntityNameReadModel extends BaseModel<EntityNameReadDTO> {
+export class EntityNameReadModel extends BaseModel<EntityNameReadQuery> {
   private id: string;
   private name: string;
   private type: EntityType;
 
-  constructor(dto: EntityNameReadDTO) {
-    super(dto);
+  constructor(data: EntityNameReadQuery) {
+    super();
 
-    this.update(dto);
+    this.update(data);
   }
 
-  get asJson(): EntityNameReadDTO {
+  get asJson(): EntityNameReadQuery {
     return {
       id: this.id,
       name: this.name,

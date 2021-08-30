@@ -1,4 +1,4 @@
-export interface ConfigType {
+export interface Config {
   apiURL: {
     origin: string;
     prefix: string;
@@ -9,8 +9,8 @@ export interface ConfigType {
   version: string;
 }
 
-export interface IConfig {
+export interface IConfigService {
   initialize: () => Promise<void>;
-  get: () => ConfigType;
+  get: () => Config;
   baseUrl: string;
 }

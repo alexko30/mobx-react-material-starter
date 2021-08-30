@@ -1,3 +1,3 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
+import AppCssBaseline from '@material-ui/core/CssBaseline';
 
-export { CssBaseline };
+export { AppCssBaseline };

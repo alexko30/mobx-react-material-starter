@@ -1,6 +1,6 @@
-import { MixinsOptions } from '@core/theme/types/main';
+import { AppMixinsOptions } from '@core/theme/types/main';
 
-export const initializeMixins = (config?: MixinsOptions): MixinsOptions => {
+export const initializeMixins = (config?: AppMixinsOptions): AppMixinsOptions => {
   return {
     ...config
   };

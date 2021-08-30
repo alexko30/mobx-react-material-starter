@@ -4,13 +4,13 @@ import debounce from 'lodash/debounce';
 
 import { Typography } from '@shared/components/typography';
 import { ErrorHandler } from '@shared/components/error-handler';
-import { withStyles, WithStyles } from '@core/theme/utils/with-styles';
+import { appWithStyles, AppWithStyles } from '@core/theme/utils/with-styles';
 import { CSS_VARIABLES, getScreenHeight } from '@shared/utils/layout';
 import { browser } from '@shared/utils/browser';
 
 import { styles } from './app.styles';
 
-export interface AppProps extends WithStyles<typeof styles>, RouteComponentProps { }
+export interface AppProps extends AppWithStyles<typeof styles>, RouteComponentProps { }
 
 @hot(module)
 class App extends React.Component<AppProps> {
@@ -59,4 +59,4 @@ class App extends React.Component<AppProps> {
   }
 }
 
-export default withStyles(styles)(withRouter(App));
+export default appWithStyles(styles)(withRouter(App));
