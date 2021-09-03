@@ -1,2 +1,2 @@
-export type DiEntityIdentifier = symbol;
-export type DiEntity<T = unknown> = T;
+export type DiEntityIdentifier = string;
+export type DiEntity = new (...args: unknown[]) => unknown;

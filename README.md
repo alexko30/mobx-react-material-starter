@@ -13,15 +13,6 @@ Go to http://localhost:4200/
 npm run build
 ```
 
-In the `dist` folder will be the app built artifacts.
-
-### Local preview build artifacts
-```js
-npm run preview
-```
-
-Go to http://localhost:4200/
-
 ### Testing
 ```js
 npm run test

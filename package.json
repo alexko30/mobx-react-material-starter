@@ -22,7 +22,6 @@
     "husky": "7.0.1",
     "jest": "27.0.6",
     "mini-css-extract-plugin": "2.1.0",
-    "pushstate-server": "3.0.1",
     "react-hot-loader": "4.13.0",
     "ts-enum-util": "4.0.2",
     "ts-jest": "27.0.4",

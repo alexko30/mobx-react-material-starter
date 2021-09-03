@@ -18,7 +18,7 @@ const entitiesConfig: Array<{ diToken: DiEntityIdentifier; entity: DiEntity }> =
   { diToken: DI_TOKENS.baseService, entity: BaseService },
   { diToken: DI_TOKENS.loggerService, entity: LoggerService },
   { diToken: DI_TOKENS.storageService, entity: StorageService },
-  ...sharedAppServices
+  ...sharedAppServices.map((x) => ({ diToken: x.diToken, entity: x.appEntity }))
 ];
 
 entitiesConfig.forEach(({ diToken, entity }) => {

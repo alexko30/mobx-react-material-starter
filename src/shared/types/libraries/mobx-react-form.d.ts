@@ -7,7 +7,7 @@ module 'mobx-react-form' {
     values: <T = Json>() => T;
     validate: () => Promise<void>;
     showErrors: () => void;
-    update: (data: { [key: string]: any }) => void;
+    update: (data: { [key: string]: unknown }) => void;
     reset: () => void;
     del: (fieldName: string) => void;
     validator;
@@ -98,8 +98,8 @@ module 'mobx-react-form' {
     onFocus: (e) => void;
     set: <K>(property: FieldUpdateProperty, value: K) => void;
     validate: () => Promise<void>;
-    reset: () => any;
-    resetValidation: () => any;
+    reset: () => void;
+    resetValidation: () => void;
     container: () => Form;
     showErrors: () => void;
     $: (fieldName: string) => Field;

@@ -1,0 +1,1 @@
+export { withRouter as appWithRouter } from 'react-router-dom';

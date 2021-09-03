@@ -1,10 +1,10 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const defaultConfig = require('./default');
+const baseConfig = require('./base');
 
 module.exports = {
-  ...defaultConfig,
+  ...baseConfig,
   output: {
     path: path.join(__dirname, '../dist'),
     publicPath: '/',
@@ -27,7 +27,7 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
-    ...defaultConfig.plugins,
+    ...baseConfig.plugins,
     new CopyWebpackPlugin({
       patterns: [
         {

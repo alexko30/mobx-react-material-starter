@@ -1,11 +1,15 @@
 import { diContainer } from '@core/di';
-import { sharedMockedServices } from '@shared/services';
+import { DiEntity } from '@core/di/types';
+import { sharedAppServices } from '@shared/services';
 
 export const initializeDi = () => {
-  sharedMockedServices.forEach(({ entity, diToken }) => {
-    diContainer
-      .rebind(diToken)
-      .to(entity)
-      .inSingletonScope();
-  });
+  sharedAppServices
+    .filter((x) => x.mockedEntity)
+    .map((x) => ({ diToken: x.diToken, entity: x.mockedEntity }))
+    .forEach(({ entity, diToken }) => {
+      diContainer
+        .rebind(diToken)
+        .to(entity as DiEntity)
+        .inSingletonScope();
+    });
 };

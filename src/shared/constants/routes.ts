@@ -3,16 +3,17 @@ import { ManageMode } from './management';
 export const ROUTES = {
   public: {
     login: '/login',
-    newPassword: '/new-password',
-    forgotPassword: '/forgot-password',
-    accountActivate: '/account-activate',
+    passwordCreating: '/password-creating',
+    passwordRecovery: '/password-recovery',
+    accountActivating: '/account-activating',
   },
   private: {
-    changePassword: '/change-password',
+    passwordChanging: '/password-changing',
     users: {
       root: '/users',
       children: {
-        userEdit: (id = ':id') => `${ROUTES.private.users.root}/${id}/${ManageMode.edit}`
+        management: (id = ':id?') => `${ROUTES.private.users.root}/:manageMode(${ManageMode.edit}|${ManageMode.create})/${id}`,
+        details: (id = ':id') => `${ROUTES.private.users.root}/${ManageMode.view}/${id}`,
       }
     }
   },

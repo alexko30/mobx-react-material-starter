@@ -1,5 +1,4 @@
 import { hot } from 'react-hot-loader';
-import { withRouter, RouteComponentProps, Route } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 
 import { Typography } from '@shared/components/typography';
@@ -7,10 +6,18 @@ import { ErrorHandler } from '@shared/components/error-handler';
 import { appWithStyles, AppWithStyles } from '@core/theme/utils/with-styles';
 import { CSS_VARIABLES, getScreenHeight } from '@shared/utils/layout';
 import { browser } from '@shared/utils/browser';
+import { ROUTES } from '@shared/constants/routes';
+import { UserRole } from '@shared/models/user/role';
+import { LazyLoad } from '@shared/components/lazy-load';
+import { AppRoute, AppRouteComponentProps, AppRouteProps } from '@shared/components/route';
+import { AppRouterSwitch } from '@shared/components/router-switch';
+import { appWithRouter } from '@shared/hocs/with-router';
+
+const Users = React.lazy(() => import('./ui/users'));
 
 import { styles } from './app.styles';
 
-export interface AppProps extends AppWithStyles<typeof styles>, RouteComponentProps { }
+export interface AppProps extends AppWithStyles<typeof styles>, AppRouteComponentProps { }
 
 @hot(module)
 class App extends React.Component<AppProps> {
@@ -36,6 +43,12 @@ class App extends React.Component<AppProps> {
     doc.style.setProperty(CSS_VARIABLES.appHeight, `${getScreenHeight()}px`);
   };
 
+  private get routes(): Array<{ routeProps: AppRouteProps; key: string; roles?: Array<UserRole> }> {
+    return [
+      { routeProps: { component: Users, path: ROUTES.private.users.root }, key: ROUTES.private.users.root } 
+    ];
+  }
+
   componentDidCatch() {
     this.setState((state) => ({ ...state, appCrashed: true }));
   }
@@ -50,13 +63,17 @@ class App extends React.Component<AppProps> {
 
     return (
       <Typography component="div" className={classes.root}>
-        <Route
-          path="/"
-          render={() => <h6 style={{ display: 'flex', alignSelf: 'center', justifyContent: 'center' }}>Hello world!</h6>}
-        />
+        <LazyLoad>
+          <AppRouterSwitch>
+            {this.routes.map(({ key, routeProps }) => (
+              <AppRoute key={key} {...routeProps} />
+            ))}
+          </AppRouterSwitch>
+          <div></div>
+        </LazyLoad>
       </Typography>
     );
   }
 }
 
-export default appWithStyles(styles)(withRouter(App));
+export default appWithStyles(styles)(appWithRouter(App));

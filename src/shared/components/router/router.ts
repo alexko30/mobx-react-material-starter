@@ -1,0 +1,1 @@
+export { Router as AppRouter } from 'react-router-dom';

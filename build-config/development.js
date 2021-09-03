@@ -1,14 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const defaultConfig = require('./default');
+const baseConfig = require('./base');
 
 module.exports = {
-  ...defaultConfig,
+  ...baseConfig,
   mode: 'development',
   devServer: {
     hot: true,
-    contentBase: defaultConfig.context,
+    contentBase: baseConfig.context,
     port: 4200,
     host: '0.0.0.0',
     publicPath: '/',
@@ -24,11 +24,11 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   module: {
     rules: [
-      ...defaultConfig.module.rules,
+      ...baseConfig.module.rules,
     ],
   },
   plugins: [
-    ...defaultConfig.plugins,
+    ...baseConfig.plugins,
     new webpack.HotModuleReplacementPlugin(),
   ]
 };

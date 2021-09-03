@@ -4,7 +4,6 @@ import '@core/di/dependencies';
 import 'react-hot-loader';
 
 import { render } from 'react-dom';
-import { Router } from 'react-router-dom';
 
 import { appHistory } from '@shared/utils/history';
 import { AppThemeProvider } from '@core/theme/provider';
@@ -17,6 +16,7 @@ import { IHttpClientService } from '@shared/types/http-client';
 import { IConfigService } from '@shared/types/config-service';
 import { IAuthService } from '@shared/types/auth-service';
 import { initializeStateManagement } from '@core/state-management/setup';
+import { AppRouter } from '@shared/components/router';
 
 const App = React.lazy(() => import('./app'));
 
@@ -42,14 +42,14 @@ async function initializeApp() {
 
     render(
       (
-        <Router history={appHistory}>
+        <AppRouter history={appHistory}>
           <AppThemeProvider theme={theme}>
             <AppCssBaseline />
             <LazyLoad>
               <App />
             </LazyLoad>
           </AppThemeProvider>
-        </Router>
+        </AppRouter>
       ),
       document.getElementById('root')
     );
