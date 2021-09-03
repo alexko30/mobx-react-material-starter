@@ -80,7 +80,7 @@
     "validatorjs": "3.22.1"
   },
   "lint-staged": {
-    "*.tsx": "npm run format:all"
+    "*": "npm run format:all"
   },
   "husky": {
     "hooks": {
