@@ -23,7 +23,7 @@ const Users: React.FC<UsersProps> = (props) => {
 
 
 
-    
+
 
 
 
@@ -38,7 +38,7 @@ const Users: React.FC<UsersProps> = (props) => {
         ))}
       </AppRouterSwitch>
     </div>
-  );
-};
-
-export default appWithStyles(styles)(Users);
+  )
+}
+const t="2";
+export default appWithStyles(styles)(Users)
