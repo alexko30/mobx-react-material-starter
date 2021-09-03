@@ -1,8 +1,8 @@
-export const serialize = (data: any) => {
+export const serialize = <T = unknown>(data: T) => {
   return JSON.stringify(data);
 };
 
-export const deserialize = (str: null | string, defaultValue: any = {}) => {
+export const deserialize = <T = unknown>(str: null | string, defaultValue: T) => {
   try {
     return JSON.parse(str || '');
   } catch {

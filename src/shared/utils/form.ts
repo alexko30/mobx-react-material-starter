@@ -1,4 +1,4 @@
-import { Field, Form } from 'mobx-react-form';
+import { AppField, AppForm } from '@core/forms/types';
 
 export const scrollToInvalidField = (fieldName: string, container = document) => {
   const input = container.querySelector(`[data-scroll-id="${fieldName}"]`);
@@ -6,8 +6,8 @@ export const scrollToInvalidField = (fieldName: string, container = document) =>
   input?.scrollIntoView();
 };
 
-export const getInvalidFields = (form: Form): Array<string> => {
-  const retrieveFields = (fields: Form['fields']): Array<string> => {
+export const getInvalidFields = (form: AppForm): Array<string> => {
+  const retrieveFields = (fields: AppForm['fields']): Array<string> => {
     return Array.from(fields.values())
       .filter(({ hasError }) => hasError)
       .reduce<Array<string>>((acc, { name, fields: nestedFields }) => 
@@ -21,11 +21,11 @@ export const getInvalidFields = (form: Form): Array<string> => {
   return retrieveFields(form.fields);
 };
 
-export const deleteFields = (form: Form, fields: Array<string>) => {
+export const deleteFields = (form: AppForm, fields: Array<string>) => {
   fields.forEach((field) => form.del(field));
 };
 
-export const getRequiredAsterisk = (options: { required?: boolean; field?: Field }) => {
+export const getRequiredAsterisk = (options: { required?: boolean; field?: AppField }) => {
   const { required, field } = options;
   const requiredRule = 'required';
   const fieldCondition = field?.rules?.includes(requiredRule);

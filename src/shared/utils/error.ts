@@ -1,6 +1,7 @@
-import { Field, Form } from 'mobx-react-form';
+import { AppField, AppForm } from '@core/forms/types';
 
-export const getDefaultError = (error: { [key: string]: Array<any> } | string) => {
+
+export const getDefaultError = (error: { [key: string]: Array<unknown> } | string) => {
   const defaultMessage = 'Something went wrong';
 
   if (!error) {
@@ -40,7 +41,7 @@ export const retrieveValidationErrors = (errors: Array<AppError>) => {
   });
 };
 
-export const showErrors = (errorSource: Array<AppError> | string, form: Form) => {
+export const showErrors = (errorSource: Array<AppError> | string, form: AppForm) => {
   if (typeof errorSource === 'string') {
     // showNotification(getDefaultError(errorSource), NotificationType.error);
 
@@ -50,7 +51,7 @@ export const showErrors = (errorSource: Array<AppError> | string, form: Form) =>
   retrieveValidationErrors(errorSource).forEach((err) => {
     const fieldParts = err.field.split('.');
 
-    const getField = (fields: Map<string, Field>, fieldName: string): Field | undefined => {
+    const getField = (fields: Map<string, AppField>, fieldName: string): AppField | undefined => {
       const selectedField = fields.get(fieldName);
 
       if (!selectedField) {

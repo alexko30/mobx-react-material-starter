@@ -82,7 +82,7 @@ export class HttpClientService implements IHttpClientService {
     }
   }
 
-  private handleUnauthenticated = async (response: HttpSuccessResponse<any>) => {
+  private handleUnauthenticated = async (response: HttpSuccessResponse<unknown>) => {
     if (this.refreshToken) {
       await this.refreshToken();
     }
@@ -98,10 +98,10 @@ export class HttpClientService implements IHttpClientService {
 
   private setClientResponseInterceptor() {
     this._client.interceptors.response.use(
-      (response: HttpSuccessResponse<any>) => {
+      (response: HttpSuccessResponse<{ data: unknown }>) => {
         return { ...response, data: response.data.data || response.data };
       },
-      async (error: HttpFailResponse<any>) => {
+      async (error: HttpFailResponse<unknown>) => {
         const response = error ? error.response : undefined;
 
         if (!response) {

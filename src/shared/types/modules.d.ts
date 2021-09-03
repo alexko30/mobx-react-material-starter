@@ -1,14 +1,14 @@
 declare module '*.jpg' {
-  const value: any;
+  const value: unknown;
   export = value;
 }
 
 declare module '*.png' {
-  const value: any;
+  const value: unknown;
   export = value;
 }
 
 declare module '*.svg' {
-  const value: any;
+  const value: unknown;
   export = value;
 }

@@ -14,7 +14,7 @@ export interface HttpConfig {
   defaults?: HttpRequestConfig;
   getTokenRefreshStatus?: () => TokenRefreshStatus;
   getAccessToken?: () => string | undefined;
-  refreshToken?: () => Promise<any>;
+  refreshToken?: () => Promise<void>;
   getUserLoginStatus?: () => boolean;
 }
 

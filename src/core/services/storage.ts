@@ -5,18 +5,18 @@ import { appInjectable } from '@core/di/utils';
 import { IStorageService, StorageType, StorageKey, StorageSetOptions } from '@shared/types/storage-service';
 
 type Methods = {
-  get: (key: StorageKey) => any | undefined;
-  set: (key: StorageKey, value: any, options?: StorageSetOptions) => void;
+  get: <T>(key: StorageKey) => T | undefined;
+  set: <T>(key: StorageKey, value: T, options?: StorageSetOptions) => void;
   remove: (key: StorageKey) => void;
 };
 
 @appInjectable()
 export class StorageService implements IStorageService {
-  private get methods(): { [type in StorageType]: Methods } {
+  private get methods(): Record<StorageType, Methods> {
     return {
       cookie: {
         get: getCookie,
-        set: setCookie,
+        set: <T>(key: StorageKey, value: T, options?: StorageSetOptions) => setCookie(key, value as unknown as string, options),
         remove: (key) => removeCookie(key)
       },
       localStorage: {
@@ -27,16 +27,16 @@ export class StorageService implements IStorageService {
     };
   }
 
-  get: IStorageService['get'] = (type, key) => {    
-    return this.methods[type].get(this.getStorageKey(key));
+  get = <T>(type: StorageType, key: string) => {    
+    return this.methods[type].get<T>(this.getStorageKey(key));
   }
   
-  set: IStorageService['set'] = (type, key, value, options) => {
+  set = <T>(type: StorageType, key: string, value: T, options?: StorageSetOptions) => {
     const defaultOptions: Partial<Record<StorageType, StorageSetOptions>> = {
       cookie: { sameSite: 'Lax' },
     };
 
-    this.methods[type].set(
+    this.methods[type].set<T>(
       this.getStorageKey(key), 
       value, 
       { 

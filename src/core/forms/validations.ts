@@ -1,8 +1,10 @@
 import validatorjs, { ValidatorStatic } from 'validatorjs';
 import { Form } from 'mobx-react-form';
+import { appIsString } from '@shared/utils/string';
+import { appIsArray } from '@shared/utils/array';
 
 export interface Validation {
-  function: (value: any, attribute?: string) => boolean;
+  function: (value: string | number | Array<unknown> | boolean, attribute?: string) => boolean;
   message: string;
 }
 
@@ -34,14 +36,14 @@ export const baseValidations = createValidations({
         validationRegExpr.whiteSpace
       ];
 
-      return formatValidators.every((rule) => rule.test(value));
+      return typeof value === 'string' ? formatValidators.every((rule) => rule.test(value)) : false;
     },
     message: 'Invalid password format.'
   },
   whiteSpace: {
     function(value) {
 
-      return validationRegExpr.whiteSpace.test(value);
+      return appIsString(value) ? validationRegExpr.whiteSpace.test(value) : false;
     },
     message: 'Please remove blank space'
   },
@@ -59,7 +61,7 @@ export const baseValidations = createValidations({
   },
   array: {
     function(value) {
-      return Boolean(value.length);
+      return appIsArray(value) ? Boolean(value.length) : false;
     },
     message: 'This field is required.'
   },
@@ -98,7 +100,7 @@ export function getDefaultValidations(customValidations?: { [key: string]: Valid
           const config = rules[key];
 
           if (config) {
-            validator.register(key, config.function, config.message)
+            validator.register(key, config.function, config.message);
           }
         });
 

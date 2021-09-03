@@ -1,24 +1,9 @@
-import { Form, FormSetup } from 'mobx-react-form';
+import { Form } from 'mobx-react-form';
+import { AppFormSetup } from './types';
 import { getDefaultValidations } from './validations';
 
-export interface Hooks {
-  onSuccess?: (form: Form) => any;
-  onSubmit?: (form: Form) => any;
-  onClear?: (form: Form) => any;
-  onReset?: (form: Form) => any;
-}
-
-export interface Field {
-  name: string;
-  type?: string;
-  rules?: string;
-  options?: { [key: string]: any };
-  value?: any;
-  role?: string;
-}
-
 export abstract class BaseForm extends Form {
-  // constructor(props: { fields?: any; hooks?: Hooks } = {}) {
+  // constructor(props: { fields?: unknown; hooks?: Hooks } = {}) {
   //   const { fields = [], hooks } = props;
 
   //   super({ fields }, { hooks });
@@ -38,5 +23,5 @@ export abstract class BaseForm extends Form {
     });
   }
 
-  abstract setup(): FormSetup;
+  abstract setup(): AppFormSetup;
 }

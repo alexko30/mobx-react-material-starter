@@ -1,0 +1,1 @@
+export const appIsArray = (value: unknown): value is [] => Array.isArray(value);

@@ -7,18 +7,18 @@ module 'mobx-react-form' {
     values: <T = Json>() => T;
     validate: () => Promise<void>;
     showErrors: () => void;
-    update: (data: { [key: string]: any }) => any;
-    reset: () => any;
-    del: (fieldName: string) => any;
+    update: (data: { [key: string]: any }) => void;
+    reset: () => void;
+    del: (fieldName: string) => void;
     validator;
     fields: Map<string, Field>;
   }
 
   export interface Hooks {
-    onSuccess?: (form: Form) => any;
-    onSubmit?: (form: Form) => any;
-    onClear?: (form: Form) => any;
-    onReset?: (form: Form) => any;
+    onSuccess?: (form: Form) => void;
+    onSubmit?: (form: Form) => void;
+    onClear?: (form: Form) => void;
+    onReset?: (form: Form) => void;
   }
 
   export interface FormEntityOptions {
@@ -53,12 +53,12 @@ module 'mobx-react-form' {
     allowRequired?: boolean;
   }
   
-  export interface FieldConfig {
+  export interface FieldConfig<T> {
     name: string;
     type?: string;
     rules?: string;
     options?: FormEntityOptions;
-    value?: any;
+    value?: T;
     role?: string;
     fields?: Array<FieldConfig>;
   }
@@ -79,7 +79,7 @@ module 'mobx-react-form' {
     onFocus: Field['onFocus'];
   }
 
-  export interface Field {
+  export interface Field<T = unknown> {
     autoFocus: boolean;
     error: string;
     errorAsync?: string;
@@ -91,12 +91,12 @@ module 'mobx-react-form' {
     role: string;
     rules: string;
     type: string;
-    value: any;
+    value: T;
     bind: () => FieldBindings;
     onBlur: (e) => void;
     onChange: (e) => void;
     onFocus: (e) => void;
-    set: (property: FieldUpdateProperty, value: any) => void;
+    set: <K>(property: FieldUpdateProperty, value: K) => void;
     validate: () => Promise<void>;
     reset: () => any;
     resetValidation: () => any;
