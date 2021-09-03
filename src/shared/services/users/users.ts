@@ -13,7 +13,12 @@ export class UsersMockedService implements IUsersService {
         id: '1',
         role: UserRole.admin,
         email: 'test@example.com'
-      })
+      }),
+      new UserListModel({
+        id: '2',
+        role: UserRole.admin,
+        email: 'test2@example.com'
+      }),
     ];
   }
 }

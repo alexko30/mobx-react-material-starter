@@ -6,21 +6,21 @@ import { IUsersService } from '@shared/types/users';
 
 export class UserListViewModel {
   private usersService = appInject<IUsersService>(DI_TOKENS.usersService);
-  @appObservable _users: Array<UserListModel> = [];
-  @appObservable _loading = {
+  private _users: Array<UserListModel> = [];
+  private _loading = {
     users: false,
   };
-  @appObservable _error = {
+  private _error = {
     usersGet: false,
   };
 
-  // constructor() {
-  //   appMakeObservable(this, {
-  //     _users: appObservable,
-  //     _loading: appObservable,
-  //     _error: appObservable,
-  //   });
-  // }
+  constructor() {
+    appMakeObservable(this, {
+      _users: appObservable,
+      _loading: appObservable,
+      _error: appObservable,
+    });
+  }
 
   get users() {
     return this._users;

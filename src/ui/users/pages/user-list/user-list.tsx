@@ -5,21 +5,20 @@ import { AppRouteComponentProps } from '@shared/components/route';
 import { UserListViewModel } from './user-list.vm';
 
 export interface AppProps extends AppRouteComponentProps { }
-const $vm = new UserListViewModel;
 
 const UserList: React.FC<AppProps> = appObserver(() => {
-  // const $vm = React.useMemo(() => new UserListViewModel(), []);
+  const $vm = React.useMemo(() => new UserListViewModel(), []);
 
   React.useEffect(() => {
     $vm.getUsers();
-  });
+  }, []);
 
   if ($vm.error.usersGet) {
     return <ErrorHandler />;
   }
 
   if ($vm.loading.users) {
-    return <Loading />;
+    return <Loading size={70} />;
   }
 
   return (

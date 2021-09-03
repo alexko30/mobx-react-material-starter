@@ -18,7 +18,7 @@ const MessageComponent: React.FC<MessageProps> = (props) => {
     <AppGrid
       container
       className={classes.root}
-      justify="center"
+      justifyContent="center"
       alignItems="center"
       direction="column"
       {...otherProps}
