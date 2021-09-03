@@ -46,7 +46,6 @@
   "scripts": {
     "start": "webpack serve --config ./build-config/development.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build-config/production.js",
-    "format": "lint-staged",
     "test": "jest --config=./tests.config.js",
     "lint": "eslint --fix --config ./code-style.config.js --ext .ts,.tsx src/",
     "prettify": "prettier --write --config ./.prettierrc.js src/**/*{.ts,.tsx}",
@@ -80,12 +79,12 @@
     "uuid": "8.3.2",
     "validatorjs": "3.22.1"
   },
+  "lint-staged": {
+    "*.tsx": "npm run format:all"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.tsx": "npm run format:all"
   }
 }
