@@ -17,7 +17,7 @@ const Users = React.lazy(() => import('./ui/users'));
 
 import { styles } from './app.styles';
 
-export interface AppProps extends AppWithStyles<typeof styles>, AppRouteComponentProps { }
+export interface AppProps extends AppWithStyles<typeof styles>, AppRouteComponentProps {}
 
 @hot(module)
 class App extends React.Component<AppProps> {
@@ -36,17 +36,15 @@ class App extends React.Component<AppProps> {
       // );
     }
   }
-  
+
   private setCSSAppHeightVariable = () => {
     const doc = document.documentElement;
-  
+
     doc.style.setProperty(CSS_VARIABLES.appHeight, `${getScreenHeight()}px`);
   };
 
   private get routes(): Array<{ routeProps: AppRouteProps; key: string; roles?: Array<UserRole> }> {
-    return [
-      { routeProps: { component: Users, path: ROUTES.private.users.root }, key: ROUTES.private.users.root } 
-    ];
+    return [{ routeProps: { component: Users, path: ROUTES.private.users.root }, key: ROUTES.private.users.root }];
   }
 
   componentDidCatch() {
@@ -71,25 +69,9 @@ class App extends React.Component<AppProps> {
           </AppRouterSwitch>
           <div></div>
         </LazyLoad>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </Typography>
     );
   }
 }
 
-export default appWithStyles(styles)(appWithRouter(App))
+export default appWithStyles(styles)(appWithRouter(App));

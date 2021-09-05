@@ -8,16 +8,18 @@ import { styles } from './users.styles';
 const UserList = React.lazy(() => import('./pages/user-list'));
 const UserManagement = React.lazy(() => import('./pages/user-management'));
 
-export interface UsersProps extends AppWithStyles<typeof styles> {
-
-}
+export interface UsersProps extends AppWithStyles<typeof styles> {}
 
 const Users: React.FC<UsersProps> = (props) => {
   const components = React.useMemo((): Array<AppRouteProps & { key: string }> => {
     return [
       { component: UserList, path: ROUTES.private.users.root, key: ROUTES.private.users.root },
       { component: UserManagement, path: ROUTES.private.users.children.management(), key: ROUTES.private.users.children.management() },
-    ]
+    ];
+
+
+
+
 
 
 
@@ -32,7 +34,7 @@ const Users: React.FC<UsersProps> = (props) => {
         ))}
       </AppRouterSwitch>
     </div>
-  )
-}
-const t="2";
-export default appWithStyles(styles)(Users)
+  );
+};
+const t = '2';
+export default appWithStyles(styles)(Users);
