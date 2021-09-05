@@ -87,10 +87,9 @@ class App extends React.Component<AppProps> {
 
 
 
-
       </Typography>
     );
   }
 }
 
-export default appWithStyles(styles)(appWithRouter(App));
+export default appWithStyles(styles)(appWithRouter(App))
