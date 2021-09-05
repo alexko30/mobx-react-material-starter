@@ -23,7 +23,7 @@ export class AuthMockedService implements IAuthService {
     };
   }
 
-  refreshToken = async () => {}
+  refreshToken = async () => {};
 
-  resetPassword: IAuthService['resetPassword'] = async (username) => {}
+  resetPassword: IAuthService['resetPassword'] = async () => {};
 }

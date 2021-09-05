@@ -10,7 +10,7 @@ const UserManagement = React.lazy(() => import('./pages/user-management'));
 
 export interface UsersProps extends AppWithStyles<typeof styles> {}
 
-const Users: React.FC<UsersProps> = (props) => {
+const Users: React.FC<UsersProps> = () => {
   const components = React.useMemo((): Array<AppRouteProps & { key: string }> => {
     return [
       { component: UserList, path: ROUTES.private.users.root, key: ROUTES.private.users.root },
@@ -28,5 +28,5 @@ const Users: React.FC<UsersProps> = (props) => {
     </div>
   );
 };
-const t = '2';
+
 export default appWithStyles(styles)(Users);

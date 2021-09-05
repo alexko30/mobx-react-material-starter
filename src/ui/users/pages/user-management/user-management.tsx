@@ -1,8 +1,8 @@
 import { AppRouteComponentProps } from '@shared/components/route';
 
-export interface AppProps extends AppRouteComponentProps { }
+export interface AppProps extends AppRouteComponentProps {}
 
-const UserManagement: React.FC<AppProps> = (props) => {
+const UserManagement: React.FC<AppProps> = () => {
   return <div />;
 };
 

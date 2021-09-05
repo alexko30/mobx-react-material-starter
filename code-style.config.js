@@ -12,6 +12,16 @@ module.exports = {
       'error',
       'always'
     ],
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          "{}": false,
+          object: false,
+        },
+        extendDefaults: true
+      }
+    ],
     '@typescript-eslint/no-unused-vars': ['error', { 
       vars: 'all', 
       args: 'after-used', 
