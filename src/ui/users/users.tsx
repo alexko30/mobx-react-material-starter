@@ -16,6 +16,10 @@ const Users: React.FC<UsersProps> = (props) => {
       { component: UserList, path: ROUTES.private.users.root, key: ROUTES.private.users.root },
       { component: UserManagement, path: ROUTES.private.users.children.management(), key: ROUTES.private.users.children.management() },
     ];
+
+
+
+    
   }, []);
 
   return (
