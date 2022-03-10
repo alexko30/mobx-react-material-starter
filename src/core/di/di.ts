@@ -18,14 +18,11 @@ const entitiesConfig: Array<{ diToken: DiEntityIdentifier; entity: DiEntity }> =
   { diToken: DI_TOKENS.baseService, entity: BaseService },
   { diToken: DI_TOKENS.loggerService, entity: LoggerService },
   { diToken: DI_TOKENS.storageService, entity: StorageService },
-  ...sharedAppServices.map((x) => ({ diToken: x.diToken, entity: x.appEntity }))
+  ...sharedAppServices.map((x) => ({ diToken: x.diToken, entity: x.entity })),
 ];
 
 entitiesConfig.forEach(({ diToken, entity }) => {
-  diContainer
-    .bind(diToken)
-    .to(entity)
-    .inSingletonScope();
+  diContainer.bind(diToken).to(entity).inSingletonScope();
 });
 
-export { diContainer }
+export { diContainer };

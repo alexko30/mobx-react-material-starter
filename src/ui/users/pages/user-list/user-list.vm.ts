@@ -43,9 +43,9 @@ export class UserListViewModel {
     } catch (err) {
       this._error.usersGet = true;
 
-      throw err;
+      console.error(err);
     } finally {
       this._loading.users = false;
     }
-  }
+  };
 }

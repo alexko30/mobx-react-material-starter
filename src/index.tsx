@@ -32,7 +32,7 @@ async function initializeApp() {
     await config.initialize();
     httpClient.setConfig({
       defaults: {
-        baseURL: config.baseUrl
+        baseURL: config.baseUrl,
       },
       refreshToken: authService.refreshToken,
       getUserLoginStatus: () => authService.loggedIn,
@@ -41,22 +41,20 @@ async function initializeApp() {
     });
 
     render(
-      (
-        <AppRouter history={appHistory}>
-          <AppThemeProvider theme={theme}>
-            <AppCssBaseline />
-            <LazyLoad>
-              <App />
-            </LazyLoad>
-          </AppThemeProvider>
-        </AppRouter>
-      ),
-      document.getElementById('root')
+      <AppRouter history={appHistory}>
+        <AppThemeProvider theme={theme}>
+          <AppCssBaseline />
+          <LazyLoad>
+            <App />
+          </LazyLoad>
+        </AppThemeProvider>
+      </AppRouter>,
+      document.getElementById('root'),
     );
   } catch (err) {
     alert('Sorry, we are running a problem while loading the App');
 
-    throw err;
+    console.error(err);
   }
 }
 

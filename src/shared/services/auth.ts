@@ -22,7 +22,7 @@ export class AuthService extends BaseService implements IAuthService {
     super();
 
     appMakeObservable(this, {
-      _user: appObservable
+      _user: appObservable,
     });
   }
 
@@ -45,5 +45,5 @@ export class AuthService extends BaseService implements IAuthService {
 
   resetPassword: IAuthService['resetPassword'] = (username) => {
     return this.http.post<void>(this.getUrl('reset'), { email: username });
-  }
+  };
 }

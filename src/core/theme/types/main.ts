@@ -1,5 +1,5 @@
 export { TransitionsOptions as AppTransitionsOptions } from '@material-ui/core/styles/transitions';
-export { PaletteOptions as AppPaletteOptions } from '@material-ui/core/styles/createPalette';
+export { PaletteOptions as AppPaletteOptions, Palette as AppPalette } from '@material-ui/core/styles/createPalette';
 export { BreakpointsOptions as AppBreakpointsOptions } from '@material-ui/core/styles/createBreakpoints';
 export { Overrides as AppOverrides } from '@material-ui/core/styles/overrides';
 export { ComponentsProps as AppComponentsProps } from '@material-ui/core/styles/props';
