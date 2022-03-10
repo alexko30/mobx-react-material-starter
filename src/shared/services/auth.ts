@@ -3,6 +3,9 @@ import { BaseService } from '@core/services/base';
 import { DI_TOKENS } from '@shared/constants/di';
 import { IHttpClientService } from '@shared/types/http-client';
 import { IAuthService } from '@shared/types/auth-service';
+import { UserMeModel } from '@shared/models/user/me-model';
+import { TokenRefreshStatus } from '@shared/constants/auth';
+import { appMakeObservable, appObservable } from '@core/state-management/utils';
 
 @appInjectable()
 export class AuthService extends BaseService implements IAuthService {
@@ -10,6 +13,31 @@ export class AuthService extends BaseService implements IAuthService {
 
   private http = appInject<IHttpClientService>(DI_TOKENS.appHttpClientService);
 
+  private _user: UserMeModel | undefined = undefined;
+  private _tokenRefreshStatus: TokenRefreshStatus;
+
+  constructor() {
+    super();
+
+    appMakeObservable(this, {
+      _user: appObservable,
+    });
+  }
+
+  get loggedIn() {
+    return Boolean(this._user);
+  }
+
+  get tokenRefreshStatus() {
+    return this._tokenRefreshStatus;
+  }
+
+  get tokens() {
+    return {
+      access: '',
+      refresh: '',
+    };
+  }
   async refreshToken() {}
 
   resetPassword: IAuthService['resetPassword'] = (username) => {
